@@ -1,0 +1,35 @@
+{
+  "name": "uiit",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HamzaSaeed1435/FYP_Backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/HamzaSaeed1435/FYP_Backend/issues"
+  },
+  "homepage": "https://github.com/HamzaSaeed1435/FYP_Backend#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "^1.4.6",
+    "dotenv": "^16.0.0",
+    "express": "^4.17.3",
+    "express-session": "^1.17.2",
+    "fs": "^0.0.1-security",
+    "hbs": "^4.2.0",
+    "jsonwebtoken": "^8.5.1",
+    "multer": "^1.4.4",
+    "mysql": "^2.18.1",
+    "path": "^0.12.7",
+    "pdfkit": "^0.13.0"
+  }
+}

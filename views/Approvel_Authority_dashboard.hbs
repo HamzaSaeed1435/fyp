@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Feb 2022 20:01:33 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description-gambolthemes" content="">
+<meta name="author-gambolthemes" content="">
+<title>Project</title>
+<link href="css/styles.css" rel="stylesheet">
+<link href="css/admin-style.css" rel="stylesheet">
+
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+</head>
+<body class="sb-nav-fixed">
+<nav class="sb-topnav navbar navbar-expand navbar-light bg-clr">
+<a class="navbar-brand logo-brand" href="">Admin Panel</a>
+<button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+
+<ul class="navbar-nav ml-auto mr-md-0">
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+<a class="dropdown-item admin-dropdown-item" href="/changepassword">Change Password</a>
+<a class="dropdown-item admin-dropdown-item" href="/logout">Logout</a>
+</div>
+</li>
+</ul>
+</nav>
+<div id="layoutSidenav">
+<div id="layoutSidenav_nav">
+<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+<div class="sb-sidenav-menu">
+<div class="nav">
+<a class="nav-link active" href="/Approvel_Authority">
+<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+Dashboard
+</a>
+
+
+
+<a class="nav-link active" href="/ApprovedQueries">
+<div class="sb-nav-link-icon"><i class="fa fa-check-square"></i></div>
+Approved Queries
+</a>
+
+<a class="nav-link active" href="/RejectedQueries">
+<div class="sb-nav-link-icon"><i class="fa fa-ban" aria-hidden="true"></i></div>
+Rejected Queries
+</a>
+
+</div>
+</div>
+</nav>
+</div>
+<div id="layoutSidenav_content">
+<main>
+<div class="container-fluid">
+<h2 class="mt-30 page-title">Queries</h2>
+<ol class="breadcrumb mb-30">
+<li class="breadcrumb-item"><a href="">Dashboard</a></li>
+<li class="breadcrumb-item active">Queries</li>
+</ol>
+<div class="row justify-content-between">
+
+<div class="col-lg-12 col-md-6 ">
+<div class="bulk-section mt-30 ">
+<div class="search-by-name-input">
+<input class="form-control" placeholder="Search by name">
+</div>
+<div class="input-group">
+
+<div class="input-group-append">
+<button class="status-btn hover-btn" type="submit">Search News</button>
+</div>
+</div>
+</div>
+</div>
+<div class="col-lg-12 col-md-12">
+<div class="card card-static-2 mt-30 mb-30">
+<div class="card-title-2">
+<h4>All Queries</h4>
+</div>
+<div class="card-body-table">
+<div class="table-responsive">
+<table class="table ucp-table table-hover">
+   <thead>
+          <tr>
+           
+            <th scope="col">Name</th>
+            <th scope="col">Reg No</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Degree</th>
+            {{!-- <th scope="col">Type</th> --}}
+             <th scope="col">type</th>
+            <th scope="col">Apply Date</th>
+            <th scope="col">Approvel</th>
+           <th scope="col">Recject</th>
+          </tr>
+        </thead>
+        <tbody>
+             {{#each record}}
+          <tr>
+           
+            <td>{{name}}</td>
+            <td>{{reg_no}}</td>
+             <td>{{gender}}</td>
+              <td>{{degree}}</td>
+               {{!-- <td>{{app_name}}</td> --}}
+               <td>{{app_Name}}</td>
+                <td>{{apply_date}}</td>
+               
+      <td> <a href="Approvel_Authority/Approve/{{id}}" class="btn btn-primary">Approve</a></td>
+      
+      <td> <a href="Approvel_Authority/Reject/{{id}}" class="btn btn-danger">Reject</a></td>
+          </tr>
+          {{/each}}
+        </tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+{{>footer}}

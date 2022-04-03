@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from gambolthemes.net/html-items/gambo_admin/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Tue, 08 Feb 2022 20:01:33 GMT -->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description-gambolthemes" content="">
+<meta name="author-gambolthemes" content="">
+<title>Project</title>
+<link href="css/styles.css" rel="stylesheet">
+<link href="css/admin-style.css" rel="stylesheet">
+
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+</head>
+<body class="sb-nav-fixed">
+<nav class="sb-topnav navbar navbar-expand navbar-light bg-clr">
+<a class="navbar-brand logo-brand" href="">Admin Panel</a>
+<button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
+
+<ul class="navbar-nav ml-auto mr-md-0">
+<li class="nav-item dropdown">
+<a class="nav-link dropdown-toggle" id="userDropdown" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+<div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+<a class="dropdown-item admin-dropdown-item" href="/changepassword">Change Password</a>
+<a class="dropdown-item admin-dropdown-item" href="/logout">Logout</a>
+</div>
+</li>
+</ul>
+</nav>
+<div id="layoutSidenav">
+<div id="layoutSidenav_nav">
+<nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
+<div class="sb-sidenav-menu">
+<div class="nav">
+<a class="nav-link active" href="/student">
+<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+Dashboard
+</a>
+
+<a class="nav-link active" href="/student/FYP">
+<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+FYP
+</a>
+
+<a class="nav-link active" href="/studentQueries">
+<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+Student Queries
+</a>
+</div>
+</div>
+</nav>
+</div>
+<div id="layoutSidenav_content">
+<main>
+<div class="container-fluid">
+<h2 class="mt-30 page-title">Add Queries</h2>
+<ol class="breadcrumb mb-30">
+<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+<li class="breadcrumb-item active">Add Queries</li>
+</ol>
+<div class="row">
+<div class="col-lg-4 col-md-6">
+<div class="left-side-tabs">
+<div class="dashboard-left-links">
+<a  class="letter user-item ">Letter</a>
+<button style="display: none;" class="letters" onclick="myFunction('letter')"></button>
+<a  class="application user-item">Application</a>
+<button style="display: none;" class="applications" onclick="myFunction('application')"></button>
+<a  class="certificate user-item">Certificate</a>
+<button style="display: none;" class="certificates" onclick="myFunction('certificate')"></button>
+
+</button>
+</div>
+</div>
+</div>
+<div style="display: block;" id="letter" class="letter col-lg-8 col-md-6 ">
+<div class="card card-static-2 mb-30">
+<div class="card-title-2">
+<h4>Apply for letter </h4>
+</div>
+<div class="card-body-table">
+<div class="news-content-right pd-20">
+<div class="row">
+<div class="col-lg-12">
+<form method="post" action="AddQueries">
+<input type="hidden" name="type" value="letter">
+<div class="form-group">
+  
+<label class="form-label">Choose Letter type*</label>
+<select id="status" required name="letter" class="form-control">
+    {{#each types}}
+  {{#iftype typeId value=2 type=typeId}}
+<option  value="{{subTypeId}}">{{app_Name}}</option>
+{{/iftype}}
+ {{/each}}
+</select>
+</div>
+<div class="form-group">
+<label class="form-label">Comments</label>
+<input type="text" name="comment" type="text" class="form-control" placeholder="">
+</div>
+<button class="save-btn hover-btn" type="submit">Save Changes</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+{{!-- certificate --}}
+<div style="display: none;" id="certificate" class=" certificate col-lg-8 col-md-6 ">
+<div class="card card-static-2 mb-30">
+<div class="card-title-2">
+<h4>Apply for Certificate </h4>
+</div>
+<div class="card-body-table">
+<div class="news-content-right pd-20">
+<div class="row">
+<div class="col-lg-12">
+<form method="post" action="AddQueries">
+<input type="hidden" name="type" value="certificate">
+<div class="form-group">
+  
+<label class="form-label">Choose Certificate type*</label>
+<select id="status" name="certificate" required class="form-control">
+    {{#each types}}
+  {{#iftype typeId value=3 type=typeId}}
+<option  value="{{subTypeId}}">{{app_Name}}</option>
+{{/iftype}}
+ {{/each}}
+</select>
+</div>
+<div class="form-group">
+<label class="form-label">Comments</label>
+<input type="text" name="comment" type="text" class="form-control" placeholder="">
+</div>
+<button class="save-btn hover-btn" type="submit">Save Changes</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+{{!-- certificate --}}
+
+{{!-- application --}}
+<div style="display: none;" id="application" class=" certificate col-lg-8 col-md-6 ">
+<div class="card card-static-2 mb-30">
+<div class="card-title-2">
+<h4>Apply for Application </h4>
+</div>
+<div class="card-body-table">
+<div class="news-content-right pd-20">
+<div class="row">
+<div class="col-lg-12">
+<form method="post" action="AddQueries" enctype="multipart/form-data">
+<input type="hidden" name="type" value="application">
+<div class="form-group">
+<label class="form-label">Choose File</label>
+<input type="file" name="application" required type="text" class="form-control" placeholder="">
+</div>
+
+<div class="form-group">
+<label class="form-label">Comments</label>
+<input type="text" name="comment" type="text" class="form-control" placeholder="">
+</div>
+<button class="save-btn hover-btn" type="submit">Save Changes</button>
+</form>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+{{!-- application --}}
+
+</div>
+</div>
+</main>
+
+{{> footer}}
+</div>
+</div>
+
+<script>
+    
+function myFunction(type) {
+
+    var a = document.getElementById('letter');
+    var b = document.getElementById('certificate');
+var c = document.getElementById('application');
+    
+  var x = document.getElementById(type);
+
+  if(type==="letter"){
+       x.style.display = "block";
+       b.style.display = "none";
+       c.style.display = "none";
+  }else  if(type==="certificate"){
+       x.style.display = "block";
+       a.style.display = "none";
+       c.style.display = "none";
+  }
+  else  if(type==="application"){
+       x.style.display = "block";
+       a.style.display = "none";
+       b.style.display = "none";
+  }
+  
+}
+
+
+jQuery("a.letter").click(function(){
+   jQuery(".letters").trigger("click");
+   return false;
+});
+jQuery("a.application").click(function(){
+   jQuery(".applications").trigger("click");
+   return false;
+});
+jQuery("a.certificate").click(function(){
+   jQuery(".certificates").trigger("click");
+   return false;
+});
+</script>
