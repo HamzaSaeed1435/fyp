@@ -1,7 +1,7 @@
 // Approvel Authority
 const express= require('express')
 const auth=require('../middleware/auth')
-const Approvel_AuthorityQueries =require('../service/Approvel_authority');
+const Approvel_AuthorityQueries =require('../controller/Approvel_authority');
 const router=express.Router()
 
 
