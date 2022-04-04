@@ -1,17 +1,19 @@
 const mysql=require('mysql')
 
-// const  db = mysql.createConnection({
-//     host:'us-cdbr-east-05.cleardb.net',
-//     user :'b07938f621d85f',
-//     password:'8c0e4db43ef58a6',
-//     database:'heroku_b7086dbc5ee85c1'
-// })
 const  db = mysql.createConnection({
-    host:'localhost',
-    user :'root',
-    password:'',
-    database:'uiit'
+    host:'us-cdbr-east-05.cleardb.net',
+    user :'bc39792813b337',
+    password:'5f185273',
+    database:'heroku_e862a1fb6c8706e'
 })
+
+// mysql://bc39792813b337:5f185273@us-cdbr-east-05.cleardb.net/heroku_e862a1fb6c8706e?reconnect=true
+// const  db = mysql.createConnection({
+//     host:'localhost',
+//     user :'root',
+//     password:'',
+//     database:'uiit'
+// })
 db.connect((error)=>{
     if(error){
         console.log(error)

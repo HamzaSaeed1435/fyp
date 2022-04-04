@@ -50,7 +50,8 @@ app.use('/',require('./api/approvel_authority.js'))
 
 
 app.get('/',(req,res)=>{
-    res.render("login.hbs")
+    // res.render("login.hbs")
+    res.send("hello")
 }) 
 
 app.get('/logout',function(req, res){
