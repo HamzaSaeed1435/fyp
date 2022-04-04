@@ -39,7 +39,7 @@ let handleLogin = async (req, res,next) => {
       res.redirect('./Admin')
     }
      if(user.role==='approvel_authority'){
-       console.log('hamza')
+     
       res.redirect('./Approvel_Authority')
     }
     if(user.role==='student'){
@@ -59,12 +59,32 @@ let handleLogin = async (req, res,next) => {
 };
 
 
+
+
 let handlestudentLogin = async (req, res,next) => {
   
   try {
       let user=await loginService.handleLogin(req.body.email, req.body.password);
 
       if (user && (await bcrypt.compare(req.body.password, user.password))) { 
+              const token = jwt.sign(
+              { user_id: user.userId,
+                role:user.role,
+                email:user.email
+               },
+              process.env.SECRET_KEY,
+              {
+                expiresIn: "1d",
+              }
+            );
+            // save user token
+         
+            // user
+             res
+    .cookie("access_token", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+    })
           // Create token
                res.json({
             user: user,

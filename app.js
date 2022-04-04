@@ -41,11 +41,11 @@ app.use(cookieParser());
 
 
 
-app.use('/',require('./routes/admin'))
-app.use('/',require('./routes/login'))
-app.use('/',require('./routes/Staff'))
-app.use('/',require('./routes/student'))
-app.use('/',require('./routes/approvel_authority.js'))
+app.use('/',require('./api/admin'))
+app.use('/',require('./api/login'))
+app.use('/',require('./api/Staff'))
+app.use('/',require('./api/student'))
+app.use('/',require('./api/approvel_authority.js'))
 
 
 
