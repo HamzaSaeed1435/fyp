@@ -49,10 +49,10 @@ app.use(cookieParser());
 
 
 
-// app.get('/',(req,res)=>{
-//     // res.render("login.hbs")
-//     res.send("hello")
-// }) 
+app.get('/',(req,res)=>{
+    // res.render("login.hbs")
+    res.send("hello")
+}) 
 
 // app.get('/logout',function(req, res){
 //     try{
@@ -63,7 +63,7 @@ app.use(cookieParser());
 //     }
     
 // });
-const port=process.env.port || 3000
+const port=process.env.PORT || 3000
 
 app.listen(port,()=>{
    console.log('Server is running onn port '+port)
