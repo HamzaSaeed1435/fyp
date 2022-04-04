@@ -49,10 +49,10 @@ app.use(cookieParser());
 
 
 
-app.get('/',(req,res)=>{
-    // res.render("login.hbs")
-    res.send("hello")
-}) 
+// app.get('/',(req,res)=>{
+//     // res.render("login.hbs")
+//     res.send("hello")
+// }) 
 
 // app.get('/logout',function(req, res){
 //     try{
