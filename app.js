@@ -44,7 +44,7 @@ app.use(cookieParser());
 // app.use('/',require('./api/admin'))
 // app.use('/',require('./api/login'))
 // app.use('/',require('./api/Staff'))
-// app.use('/',require('./api/student'))
+app.use('/',require('./api/student'))
 // app.use('/',require('./api/approvel_authority.js'))
 
 
@@ -54,15 +54,15 @@ app.get('/',(req,res)=>{
     res.send("hello")
 }) 
 
-// app.get('/logout',function(req, res){
-//     try{
-//       res.clearCookie("access_token");
-//       res.redirect('/');
-//     }catch(error){
-//       res.status(500).send(error)
-//     }
+app.get('/logout',function(req, res){
+    try{
+      res.clearCookie("access_token");
+      res.redirect('/');
+    }catch(error){
+      res.status(500).send(error)
+    }
     
-// });
+});
 const port=process.env.PORT || 3000
 
 app.listen(port,()=>{
