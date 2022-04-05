@@ -1,17 +1,52 @@
 const mysql=require('mysql');
+const promise=require('promise')
 const connection=require('../config/db')
 
 
 
+let CountApplication=(id)=>{
+    return new promise((resolve,reject)=>{
+    const sql='SELECT COUNT(*) AS count FROM  record_tbl WHERE studentId=?'
+    connection.query(sql,[id],(err,count)=>{
+        if(err)  reject(err)
+        resolve(count)
+
+    })
+})
+}
 
 
+let CountProcesApp=(id)=>{
+    return new promise((resolve,reject)=>{
+    const sql='SELECT COUNT(*) AS count FROM  record_tbl WHERE studentId=? AND approvel_status=? '
+    connection.query(sql,[id,'0'],(err,count)=>{
+        if(err)  reject(err)
+        resolve(count)
+
+    })
+})
+}
+
+
+let CountRejctApp=(id)=>{
+    return new promise((resolve,reject)=>{
+    const sql='SELECT COUNT(*) AS count FROM  record_tbl WHERE studentId=? AND approvel_status=?'
+    connection.query(sql,[id,'-1'],(err,count)=>{
+        if(err)  reject(err)
+        resolve(count)
+
+    })
+})
+}
 let user=(id)=>{
+    return new promise((resolve,reject)=>{
     const sql='SELECT * FROM student WHERE id=?'
     connection.query(sql,[id],(err,user)=>{
         if(err)  reject(err)
         resolve(user)
 
     })
+})
 }
 
 let getRecord=(id)=>{
@@ -102,4 +137,11 @@ resolve(types)
             })
         })
     }
-module.exports={user,getRecord,getType,addLetter,addCertificate,addApplication}
+module.exports={
+    user,getRecord,getType,addLetter,addCertificate,addApplication,
+    CountApplication,
+    CountProcesApp,
+    CountRejctApp
+
+
+}

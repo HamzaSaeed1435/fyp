@@ -6,11 +6,17 @@ let getUser= async (req, res) => {
        return res.render("studentDashboard.hbs",{user});
    };
 
-   let getRecord= async (req, res) => {
-      
-    const record = await student.getRecord(req.user[0].studentId)
+   let dashboard= async (req, res) => {
+const CountApplication= await student.CountApplication(req.user[0].id)
+const CountProcesApp =await student.CountProcesApp(req.user[0].id)
+const CountRejctApp =await student.CountRejctApp(req.user[0].id)
 
-       return res.render("student/studentQueries.hbs",{record});
+
+res.json({
+    totalApplication: CountApplication[0].count,
+    ProcessingApp:CountProcesApp[0].count,
+    rejectApp:CountRejctApp[0].count
+})
    };
 
    let getTypes= async (req,res)=>{
@@ -42,7 +48,7 @@ return res.render('student/studentNewQueries.hbs',{types})
   
    module.exports={
        getUser,
-       getRecord,
+       dashboard,
        addQueries,
        getTypes:getTypes
    }

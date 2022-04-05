@@ -1,12 +1,5 @@
 const jwt = require("jsonwebtoken");
-const mysql=require('mysql');
-const db = mysql.createConnection({
-  host:process.env.DATABASEHOST,
-  user : 'root',
-  password:process.env.DATABASEPASSWORD,
-  database:process.env.DATABASE
-})
-
+const connection=require('../config/db')
 
 const auth = async (req,res,next) => {
   
@@ -16,10 +9,15 @@ const auth = async (req,res,next) => {
     
      const sql=`SELECT * FROM ${varifyuser.role} WHERE email=?`
     
-db.query(`SELECT * FROM ${varifyuser.role} where email=?`,[varifyuser.email],(err,user)=>{
-  req.user=user
-req.token=token
-next()
+     connection.query(`SELECT * FROM ${varifyuser.role} where email=?`,[varifyuser.email],(err,user)=>{
+       if(err) throw err
+
+    if(user.length>0){
+        req.user=user
+        req.token=token
+      
+        next()
+    }
 })
 
   }catch(error)
