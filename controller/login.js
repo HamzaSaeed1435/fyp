@@ -98,7 +98,7 @@ let handlestudentLogin = async (req, res,next) => {
       
   } catch (err) {
            res.json({
-            message: "Login Failed",
+            message: err.message,
           });
         }
 };
