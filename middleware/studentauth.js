@@ -7,9 +7,9 @@ const auth = async (req,res,next) => {
     const token=req.cookies.access_token
 
      const varifyuser=jwt.verify(token,process.env.SECRET_KEY)
-    
+   
      const sql=`SELECT * FROM student WHERE reg_no=?`
-    i
+    
    
      connection.query(sql,[varifyuser.email],(err,user)=>{
         if(err) throw err
@@ -25,14 +25,16 @@ if(user.length>0)
     next()
 }else{
     res.json({
+      message:"You are not authorized to access this page"
         })
 }
        })
      
   }catch(error)
   {
+    
 // res.status(401).send(error)
-res.json({     message:"You are not authorized to access this page",
+res.json({     message:"You are not authorized to access this page"
   })
   }
 }

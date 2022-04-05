@@ -10,12 +10,14 @@ let getUser= async (req, res) => {
 const CountApplication= await student.CountApplication(req.user[0].id)
 const CountProcesApp =await student.CountProcesApp(req.user[0].id)
 const CountRejctApp =await student.CountRejctApp(req.user[0].id)
+const CountsavedApp =await student.CountsavedApp(req.user[0].id)
 
 
 res.json({
-    totalApplication: CountApplication[0].count,
+    TotalApplication: CountApplication[0].count,
     ProcessingApp:CountProcesApp[0].count,
-    rejectApp:CountRejctApp[0].count
+    RejectApp:CountRejctApp[0].count,
+    SavedApp:CountsavedApp[0].count
 })
    };
 
