@@ -30,11 +30,11 @@ res.json({
     res.json(types)
        }
 
-       let getCertificate= async (req,res)=>{
-        const types=await student.getCertificate()
+    //    let getCertificate= async (req,res)=>{
+    //     const types=await student.getCertificate()
         
-        res.json(types)
-           }
+    //     res.json(types)
+    //        }
        
 
    let addLetter=async (req,res)=>{

@@ -87,7 +87,7 @@ let handlestudentLogin = async (req, res,next) => {
     })
           // Create token
                res.json({
-            user: user,
+            
             message: "Login Successfully",
           });
         }else{
