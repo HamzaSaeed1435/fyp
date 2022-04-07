@@ -12,10 +12,18 @@ const upload = multer({ dest: './docoument/Application' })
 
     
     router.get('/student/dashboard',auth.auth,auth.checkStudent,studentController.dashboard)
+
     router.get('/student/Letters',auth.auth,auth.checkStudent,studentController.getLetters)
     router.get('/student/Application',auth.auth,auth.checkStudent,studentController.getApplication)
     router.get('/student/Certificate',auth.auth,auth.checkStudent,studentController.getCertificate)
-    //  router.get('/AddQueries',auth.auth,auth.checkStudent,studentController.getTypes)
-    //   router.post('/AddQueries',auth.auth,auth.checkStudent,upload.single('application'),studentController.addQueries)
+ 
+      router.post('/student/AddLetter',auth.auth,auth.checkStudent,studentController.addLetter)
+      router.post('/student/AddApplication',auth.auth,auth.checkStudent,studentController.addApplication)
+      router.post('/student/AddCertificate',auth.auth,auth.checkStudent,studentController.addCertificate)
+
+      router.get('/student/getProcessingApp',auth.auth,auth.checkStudent,studentController.getProccessingApp)
+      router.get('/student/getRejectedApp',auth.auth,auth.checkStudent,studentController.getRejectedApp)
+      router.get('/student/getSavedApp',auth.auth,auth.checkStudent,studentController.getSavedApp)
+
 
       module.exports=router;
