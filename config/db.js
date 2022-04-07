@@ -14,6 +14,15 @@ const mysql=require('mysql')
 //     password:'',
 //     database:'uiit'
 // })
+
+// db.connect((error)=>{
+//     if(error){
+//         console.log(error)
+//     }else{
+//         console.log('Mysql Connected.....')
+//     }
+// })
+
 var db = mysql.createPool({
     connectionLimit : 10,
     host:'us-cdbr-east-05.cleardb.net',

@@ -52,16 +52,49 @@ let CountsavedApp=(id)=>{
 })
 }
 
-let user=(id)=>{
+let getLetters=()=>{
     return new promise((resolve,reject)=>{
-    const sql='SELECT * FROM student WHERE id=?'
-    connection.query(sql,[id],(err,user)=>{
-        if(err)  reject(err)
-        resolve(user)
-
+    
+        connection.query('SELECT * FROM app_subtype where typeId=?',['2'],(error,types)=>{
+    if(error)
+     reject(error)
+    
+    resolve(types)
+    
+        })
     })
-})
-}
+    }
+
+
+    let getApplication=()=>{
+        return new promise((resolve,reject)=>{
+        
+            connection.query('SELECT * FROM app_subtype where typeId=?',['1'],(error,types)=>{
+        if(error)
+         reject(error)
+        
+        resolve(types)
+        
+            })
+        })
+        }
+
+
+        let getCertificate=()=>{
+            return new promise((resolve,reject)=>{
+            
+                connection.query('SELECT * FROM app_subtype where typeId=?',['3'],(error,types)=>{
+            if(error)
+             reject(error)
+            
+            resolve(types)
+            
+                })
+            })
+            }
+        
+    
+
 
 let getRecord=(id)=>{
 
@@ -81,18 +114,7 @@ let getRecord=(id)=>{
     }
 
 
-let getType=()=>{
-return new promise((resolve,reject)=>{
 
-    connection.query('SELECT * FROM app_subtype',(error,types)=>{
-if(error)
- reject(error)
-
-resolve(types)
-
-    })
-})
-}
 
     let addLetter  =  async (studentId,subTypeId) => {
         const subTypeDetail=await subTypeDetails(subTypeId)
@@ -152,11 +174,14 @@ resolve(types)
         })
     }
 module.exports={
-    user,getRecord,getType,addLetter,addCertificate,addApplication,
+    getRecord,addLetter,addCertificate,addApplication,
     CountApplication,
     CountProcesApp,
     CountRejctApp,
-    CountsavedApp
+    CountsavedApp,
+    getLetters,
+    getApplication,
+    getCertificate
 
 
 }

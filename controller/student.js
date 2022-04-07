@@ -1,10 +1,6 @@
 const db = require('../config/db');
 const student=require('../service/student')
 
-let getUser= async (req, res) => {
-    const user = await student.user(req.user[0].id)
-       return res.render("studentDashboard.hbs",{user});
-   };
 
    let dashboard= async (req, res) => {
 const CountApplication= await student.CountApplication(req.user[0].id)
@@ -17,15 +13,29 @@ res.json({
     TotalApplication: CountApplication[0].count,
     ProcessingApp:CountProcesApp[0].count,
     RejectApp:CountRejctApp[0].count,
-    SavedApp:CountsavedApp[0].count
+    SavedApp:CountsavedApp[0].count,
+    user:req.user[0]
 })
    };
 
-   let getTypes= async (req,res)=>{
-const types=await student.getType()
-
-return res.render('student/studentNewQueries.hbs',{types})
+   let getLetters= async (req,res)=>{
+    const types=await student.getLetters()
+                res.json(types)
    }
+
+
+   let getApplication= async (req,res)=>{
+    const types=await student.getApplication()
+    
+    res.json(types)
+       }
+
+       let getCertificate= async (req,res)=>{
+        const types=await student.getCertificate()
+        
+        res.json(types)
+           }
+       
 
    let addQueries=async (req,res)=>{
         if(req.body.type==='letter'){
@@ -49,8 +59,9 @@ return res.render('student/studentNewQueries.hbs',{types})
    }
   
    module.exports={
-       getUser,
        dashboard,
        addQueries,
-       getTypes:getTypes
+       getLetters,
+       getApplication,
+       getCertificate
    }
