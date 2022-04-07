@@ -92,7 +92,7 @@ let handlestudentLogin = async (req, res,next) => {
           });
         }else{
           res.json({
-            message:"Invalid Crediantials"
+         
           })
         }
       
