@@ -1,3 +1,4 @@
+const promise=require('promise')
 const mysql=require('mysql');
 const connection=require('../config/db')
 
@@ -56,9 +57,10 @@ let RejectRecord=(id)=>{
     }
 
 let approve=(id)=>{
-    const sql ="UPDATE `record_tbl` SET approvel_status='1' WHERE id=?"
+    const date=new Date()
+    const sql ='UPDATE record_tbl SET ? WHERE id=?'
   return new Promise((resolve, reject) => {
-    connection.query(sql,[id],(err,res)=>{
+    connection.query(sql,[{approvel_status :'1',approvel_date:date },id],(err,res)=>{
         if(err){
             reject(err)
         }else{
@@ -69,9 +71,10 @@ let approve=(id)=>{
 }
 
 let reject=(id)=>{
-    const sql ="UPDATE `record_tbl` SET approvel_status='-1' WHERE id=?"
+    const date=new Date()
+    const sql ='UPDATE record_tbl SET ? WHERE id=?'
   return new Promise((resolve, reject) => {
-    connection.query(sql,[id],(err,res)=>{
+    connection.query(sql,[{approvel_status :'-1',approvel_date:date },id],(err,res)=>{
         if(err){
             reject(err)
         }else{

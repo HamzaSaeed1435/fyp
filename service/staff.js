@@ -1,4 +1,5 @@
 const mysql=require('mysql');
+const promise=require('promise');
 const connection=require('../config/db')
 
 

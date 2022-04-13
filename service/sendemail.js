@@ -1,6 +1,5 @@
 var http = require("https");
-let  SendEmail =()=>{
-    console.log('send success')
+let  SendEmail =(email)=>{
     var options = {
         "method": "POST",
         "hostname": "emailapi.netcorecloud.net",

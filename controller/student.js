@@ -38,7 +38,7 @@ res.json({
        
 
    let addLetter=async (req,res)=>{
-      const result=  await student.addLetter(req.user[0].studentId,req.body.subTypeId,req.body.authorityDeligatedId)
+      const result=  await student.addLetter(req.user[0].studentId,req.body.subTypeId,req.body.authorityDeligatedId,req.body.comment)
        
         res.json({
             result:result
@@ -50,7 +50,7 @@ res.json({
 
    let addCertificate=async (req,res)=>{
 
-        const result=  await student.addCertificate(req.user[0].studentId,req.body.subTypeId,req.body.authorityDeligatedId)
+        const result=  await student.addCertificate(req.user[0].studentId,req.body.subTypeId,req.body.authorityDeligatedId,req.body.comment)
 
         res.json({
             result:result
@@ -61,7 +61,7 @@ res.json({
    
    let addApplication=async (req,res)=>{
 
-    const result=  await student.addApplication(req.user[0].studentId,req.body.subTypeId,req.body.authorityDeligatedId)
+    const result=  await student.addApplication(req.user[0].studentId,req.body.subTypeId,req.body.authorityDeligatedId,req.body.body)
 
     res.json({
         result:result

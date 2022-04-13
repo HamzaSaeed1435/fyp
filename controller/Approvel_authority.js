@@ -1,5 +1,5 @@
 const Queries =require('../service/Approvel_authority')
-
+const printPdf =require('../controller/printPdf')
 
 let getRecord = async (req, res) => {
 
@@ -19,9 +19,8 @@ let getRejectedRecord=async(req,res)=>{
 
 let approve= async (req,res)=>{
  try{
-     
 const approvelstatus=await Queries.approve(req.params.id)
-// console.log(approvelstatus.changedRows)
+const record =printPdf.download(req.params.id)
 return res.redirect("/Approvel_Authority");
 } catch (err) {
 return res.redirect("/Approvel_Authority");
@@ -31,7 +30,6 @@ return res.redirect("/Approvel_Authority");
 let reject= async (req,res)=>{
     try{
    const approvelstatus=await Queries.reject(req.params.id)
-   // console.log(approvelstatus.changedRows)
    return res.redirect("/Approvel_Authority");
    } catch (err) {
    return res.redirect("/Approvel_Authority");

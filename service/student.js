@@ -94,12 +94,12 @@ let getLetters=()=>{
             }
         
     
-            let addLetter  =   (studentId,subTypeId,authorityDeligatedId) => {
+            let addLetter  =   (studentId,subTypeId,authorityDeligatedId,comment) => {
             
              const date=new Date()
                 return new promise((resolve,reject)=>{
-                    const sql="INSERT INTO `record_tbl` (`studentId`, `subTypeId`, `approvelAuthorityId`, `approvel_status`,`apply_date`) VALUES(?,?,?,?,?)"
-                    connection.query(sql,[studentId,subTypeId,authorityDeligatedId,'0',date],(error,result)=>{
+                    const sql="INSERT INTO `record_tbl` (`studentId`, `subTypeId`, `approvelAuthorityId`, `approvel_status`,`body`,`apply_date`) VALUES(?,?,?,?,?,?)"
+                    connection.query(sql,[studentId,subTypeId,authorityDeligatedId,'0',comment,date],(error,result)=>{
                         if(error){
                             reject(error)
                         }else{
@@ -110,12 +110,12 @@ let getLetters=()=>{
                 })
             }
 
-            let addCertificate  =   (studentId,subTypeId,authorityDeligatedId) => {
+            let addCertificate  =   (studentId,subTypeId,authorityDeligatedId,comment) => {
             
                 const date=new Date()
                    return new promise((resolve,reject)=>{
-                       const sql="INSERT INTO `record_tbl` (`studentId`, `subTypeId`, `approvelAuthorityId`, `approvel_status`,`apply_date`) VALUES(?,?,?,?,?)"
-                       connection.query(sql,[studentId,subTypeId,authorityDeligatedId,'0',date],(error,result)=>{
+                       const sql="INSERT INTO `record_tbl` (`studentId`, `subTypeId`, `approvelAuthorityId`, `approvel_status`,`body`,`apply_date`) VALUES(?,?,?,?,?,?)"
+                       connection.query(sql,[studentId,subTypeId,authorityDeligatedId,'0',comment,date],(error,result)=>{
                            if(error){
                                reject(error)
                            }else{
@@ -125,12 +125,12 @@ let getLetters=()=>{
                        })
                    })
                }
-               let  addApplication  =   (studentId,subTypeId,authorityDeligatedId) => {
+               let  addApplication  =   (studentId,subTypeId,authorityDeligatedId,body) => {
             
                 const date=new Date()
                    return new promise((resolve,reject)=>{
-                       const sql="INSERT INTO `record_tbl` (`studentId`, `subTypeId`, `approvelAuthorityId`, `approvel_status`,`apply_date`) VALUES(?,?,?,?,?)"
-                       connection.query(sql,[studentId,subTypeId,authorityDeligatedId,'0',date],(error,result)=>{
+                       const sql="INSERT INTO `record_tbl` (`studentId`, `subTypeId`, `approvelAuthorityId`, `approvel_status`, `body`,`apply_date`) VALUES(?,?,?,?,?,?)"
+                       connection.query(sql,[studentId,subTypeId,authorityDeligatedId,'0',body,date],(error,result)=>{
                            if(error){
                                reject(error)
                            }else{

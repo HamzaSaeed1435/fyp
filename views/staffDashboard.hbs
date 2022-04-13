@@ -17,7 +17,7 @@
 </head>
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-light bg-clr">
-<a class="navbar-brand logo-brand" href="">Admin Panel</a>
+<a class="navbar-brand logo-brand" href="">Staff Panel</a>
 <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
 
 <ul class="navbar-nav ml-auto mr-md-0">
@@ -93,6 +93,7 @@ Approved Queries
             <th scope="col">Type</th>
            <th scope="col">Approvel Authority</th>
             <th scope="col">Apply Date</th>
+            <th scope="col">Approvel Date</th>
             <th scope="col">Print</th>
           </tr>
         </thead>
@@ -108,7 +109,7 @@ Approved Queries
                <td>{{app_name}}</td>
                <td>{{Name}}</td>
                 <td>{{apply_date}}</td>
-               
+               <td>{{approvel_date}}</td>
       <td> <a  href="staff/print/{{id}}" class="btn btn-primary">print</a></td>
       
           </tr>
@@ -122,4 +123,16 @@ Approved Queries
 </div>
 </div>
 </main>
-{{>footer}}
+<footer class="py-4 bg-footer mt-auto">
+<div class="container-fluid">
+<div class="d-flex align-items-center justify-content-between small">
+<div class="text-muted-1">© 2022  UIIT STUDENT FACILITATION SYSTEM</a></div>
+<div class="footer-links">
+
+</div>
+</div>
+</div>
+</footer>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="js/scripts.js"></script>

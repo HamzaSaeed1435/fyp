@@ -8,6 +8,8 @@ const session = require('express-session');
 const cookieParser = require("cookie-parser");
 const flash = require('connect-flash');
 const bcrypt=require('bcryptjs')
+
+
 dotenv.config({path:'./.env'})
 const app = express()
 app.use(express.static(__dirname + '/public'))
@@ -50,9 +52,11 @@ app.use('/',require('./api/student'))
 
 
 app.get('/',(req,res)=>{
-    // res.render("login.hbs")
-    res.send("hello")
-}) 
+    res.render("login.hbs")
+   
+})
+
+
 
 app.get('/logout',function(req, res){
     try{

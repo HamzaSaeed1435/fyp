@@ -10,12 +10,8 @@ const auth = async (req,res,next) => {
    
      const sql=`SELECT * FROM student WHERE reg_no=?`
     
-   
      connection.query(sql,[varifyuser.email],(err,user)=>{
         if(err) throw err
-
-    
-
 if(user.length>0)
 {
    
