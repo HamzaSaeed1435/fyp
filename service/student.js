@@ -1,15 +1,21 @@
 const mysql=require('mysql');
+const { resolve } = require('path');
+const { reject } = require('promise');
 const promise=require('promise');
 const db = require('../config/db');
 const connection=require('../config/db')
 
 let userDetail=(id)=>{
-    const sql='SELECT * FROM  student WHERE studentId=?'
-    connection.query(sql,[id],(err,user)=>{
-        if(err)  reject(err)
-        resolve(user)
 
+    return new promise((resolve,reject)=>{
+        const sql='SELECT * FROM  student WHERE studentId=?'
+        connection.query(sql,[id],(err,user)=>{
+            if(err)  reject(err)
+            resolve(user)
+    
+        })
     })
+
 }
 
 let CountApplication=(id)=>{

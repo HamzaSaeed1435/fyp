@@ -8,13 +8,14 @@ const CountProcesApp =await student.CountProcesApp(req.userId)
 const CountRejctApp =await student.CountRejctApp(req.userId)
 const CountsavedApp =await student.CountsavedApp(req.userId)
 
-// const userDetail =await student.userDetail(req.userId)
-// console.log(userDetail)
+const userDetail =await student.userDetail(req.userId)
+
 res.json({
     TotalApplication: CountApplication[0].count,
     ProcessingApp:CountProcesApp[0].count,
     RejectApp:CountRejctApp[0].count,
-    SavedApp:CountsavedApp[0].count
+    SavedApp:CountsavedApp[0].count,
+    user:userDetail[0]
    
 })
    };
