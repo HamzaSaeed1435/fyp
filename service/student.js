@@ -1,8 +1,16 @@
 const mysql=require('mysql');
-const promise=require('promise')
+const promise=require('promise');
+const db = require('../config/db');
 const connection=require('../config/db')
 
+let userDetail=(id)=>{
+    const sql='SELECT * FROM  student WHERE studentId=?'
+    connection.query(sql,[id],(err,user)=>{
+        if(err)  reject(err)
+        resolve(user)
 
+    })
+}
 
 let CountApplication=(id)=>{
     return new promise((resolve,reject)=>{
@@ -198,6 +206,7 @@ let getProccessingApp=(id)=>{
 
 
 module.exports={
+    userDetail,
     addLetter,
     addCertificate,
     addApplication,

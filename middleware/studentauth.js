@@ -3,42 +3,41 @@ const connection=require('../config/db')
 
 const auth = async (req,res,next) => {
   
-  try{
-    const token=req.cookies.access_token
+ 
+    // const token=req.cookies.access_token
+    res.header(
+      "Access-Control-Allow-Headers",
+      "*"
+    );
 
-     const varifyuser=jwt.verify(token,process.env.SECRET_KEY)
+    // let token = req.headers["authorization"];
+    let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTY0OTg2MzU2NCwiZXhwIjoxNjQ5OTQ5OTY0fQ.kl-SoaaXpmw9Sxmo32T9-sQDDcjxPuL0Y3XQqqoWLMs';
+    if (!token) {
+      return res.status(403).send({ message: "No token provided!" });
+    }
+    //  const varifyuser=jwt.verify(token,process.env.SECRET_KEY,err)
    
-     const sql=`SELECT * FROM student WHERE reg_no=?`
-    
-     connection.query(sql,[varifyuser.email],(err,user)=>{
-        if(err) throw err
-if(user.length>0)
-{
-   
-    req.user=user
-    req.token=token
+
+     jwt.verify(token,'hamzasaeed', (err, decoded) => {
+      if (err) {
+        return res.status(401).send({ message: "Unauthorized!" });
+      }
+      
+      req.userId = decoded.id;
+      req.role = decoded.role;
+      req.token = token;
+      next();
+      
+    });
   
-    next()
-}else{
-    res.json({
-      message:"You are not authorized to access this page"
-        })
-}
-       })
-     
-  }catch(error)
-  {
-    
-// res.status(401).send(error)
-res.json({     message:"You are not authorized to access this page"
-  })
-  }
+
+  
 }
 
 
 
 let checkStudent=async(req,res,next)=>{
-  if(req.user[0].role==='student')
+  if(req.role==='student')
   {
     next()
   }else{

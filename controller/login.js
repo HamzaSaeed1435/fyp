@@ -68,11 +68,10 @@ let handlestudentLogin = async (req, res,next) => {
 
       if (user && (await bcrypt.compare(req.body.password, user.password))) { 
               const token = jwt.sign(
-              { user_id: user.userId,
-                role:user.role,
-                email:user.email
+              { id: user.userId,
+                role: user.role
                },
-              process.env.SECRET_KEY,
+              'hamzasaeed',
               {
                 expiresIn: "1d",
               }
@@ -80,15 +79,18 @@ let handlestudentLogin = async (req, res,next) => {
             // save user token
          
             // user
-             res
-    .cookie("access_token", token, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-    })
+            //  res
+    // .cookie("access_token", token, {
+    //   httpOnly: true,
+    //   secure: process.env.NODE_ENV === "production",
+    // })
           // Create token
                res.json({
-            user: user,
-            message: "Login Successfully",
+                user_id: user.userId,
+                role:user.role,
+                email:user.email,
+                accessToken:token,
+                status:200
           });
         }else{
           res.json({

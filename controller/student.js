@@ -3,18 +3,19 @@ const student=require('../service/student')
 
 
    let dashboard= async (req, res) => {
-const CountApplication= await student.CountApplication(req.user[0].studentId)
-const CountProcesApp =await student.CountProcesApp(req.user[0].studentId)
-const CountRejctApp =await student.CountRejctApp(req.user[0].studentId)
-const CountsavedApp =await student.CountsavedApp(req.user[0].studentId)
+const CountApplication= await student.CountApplication(req.userId)
+const CountProcesApp =await student.CountProcesApp(req.userId)
+const CountRejctApp =await student.CountRejctApp(req.userId)
+const CountsavedApp =await student.CountsavedApp(req.userId)
 
-
+// const userDetail =await student.userDetail(req.userId)
+// console.log(userDetail)
 res.json({
     TotalApplication: CountApplication[0].count,
     ProcessingApp:CountProcesApp[0].count,
     RejectApp:CountRejctApp[0].count,
-    SavedApp:CountsavedApp[0].count,
-    user:req.user[0]
+    SavedApp:CountsavedApp[0].count
+   
 })
    };
 
@@ -38,7 +39,7 @@ res.json({
        
 
    let addLetter=async (req,res)=>{
-      const result=  await student.addLetter(req.user[0].studentId,req.body.subTypeId,req.body.authorityDeligatedId,req.body.comment)
+      const result=  await student.addLetter(req.userId,req.body.subTypeId,req.body.authorityDeligatedId,req.body.comment)
        
         res.json({
             result:result
@@ -50,7 +51,7 @@ res.json({
 
    let addCertificate=async (req,res)=>{
 
-        const result=  await student.addCertificate(req.user[0].studentId,req.body.subTypeId,req.body.authorityDeligatedId,req.body.comment)
+        const result=  await student.addCertificate(req.userId,req.body.subTypeId,req.body.authorityDeligatedId,req.body.comment)
 
         res.json({
             result:result
@@ -61,7 +62,7 @@ res.json({
    
    let addApplication=async (req,res)=>{
 
-    const result=  await student.addApplication(req.user[0].studentId,req.body.subTypeId,req.body.authorityDeligatedId,req.body.body)
+    const result=  await student.addApplication(req.userId,req.body.subTypeId,req.body.authorityDeligatedId,req.body.body)
 
     res.json({
         result:result
@@ -71,7 +72,7 @@ res.json({
 }  
  
 let getProccessingApp=async (req,res)=>{
-    const result=  await student.getProccessingApp(req.user[0].studentId)
+    const result=  await student.getProccessingApp(req.userId)
     
     res.json({
         result:result
@@ -79,14 +80,14 @@ let getProccessingApp=async (req,res)=>{
 }
 
 let getRejectedApp=async (req,res)=>{
-    const result=  await student.getRejectedApp(req.user[0].studentId)
+    const result=  await student.getRejectedApp(req.userId)
     res.json({
         result:result
     })
 }
 
 let getSavedApp=async (req,res)=>{
-    const result=  await student.getSavedApp(req.user[0].studentId)
+    const result=  await student.getSavedApp(req.userId)
     res.json({
         result:result
     })
