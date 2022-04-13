@@ -10,8 +10,8 @@ const auth = async (req,res,next) => {
       "*"
     );
 
-    // let token = req.headers["authorization"];
-    let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTY0OTg2MzU2NCwiZXhwIjoxNjQ5OTQ5OTY0fQ.kl-SoaaXpmw9Sxmo32T9-sQDDcjxPuL0Y3XQqqoWLMs';
+    let token = req.headers["authorization"];
+    // let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTY0OTg2MzU2NCwiZXhwIjoxNjQ5OTQ5OTY0fQ.kl-SoaaXpmw9Sxmo32T9-sQDDcjxPuL0Y3XQqqoWLMs';
     if (!token) {
       return res.status(403).send({ message: "No token provided!" });
     }
