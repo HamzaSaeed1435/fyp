@@ -7,12 +7,14 @@ const hbs = require('hbs');
 const session = require('express-session');
 const cookieParser = require("cookie-parser");
 const flash = require('connect-flash');
-const bcrypt=require('bcryptjs')
+const bcrypt = require('bcryptjs');
 
+const connection=require('./config/db')
+const auth=require('./middleware/auth')
 
 dotenv.config({path:'./.env'})
 const app = express()
-app.use(express.static(__dirname + '/public'))
+app.use(express.static('public'));
 app.use(urlencoded({extended:false}));
 app.use(express.json())
 app.set('view engine', 'hbs')
@@ -30,6 +32,7 @@ hbs.registerHelper('iftype', function (conditional, options) {
       return options.inverse(this);
     }
   });
+  
 app.use(session({
     secret:'geeksforgeeks',
     saveUninitialized: true,
@@ -43,12 +46,15 @@ app.use(cookieParser());
 
 
 
-// app.use('/',require('./api/admin'))
+app.use('/',require('./api/admin'))
 app.use('/',require('./api/login'))
-// app.use('/',require('./api/Staff'))
+app.use('/',require('./api/Staff'))
 app.use('/',require('./api/student'))
-// app.use('/',require('./api/approvel_authority.js'))
+app.use('/',require('./api/approvel_authority.js'))
 
+app.use('/',require('./api/supervisor.js'))
+app.use('/',require('./api/coordinator.js'))
+app.use('/',require('./api/evaluvator.js'))
 
 
 app.get('/',(req,res)=>{
@@ -56,7 +62,55 @@ app.get('/',(req,res)=>{
    
 })
 
+app.get('/changepassword',(req,res)=>{
+  return res.render("changepassword.hbs", {
+    success:req.flash('success'),
+    error:req.flash('error')
+  });
+})
+ app.post('/changepassword',auth.auth,  (req,res)=> {
 
+  if(req.body.oldPass===req.body.newPass){
+  
+    req.flash('error', 'new password should not be same as old password');
+           return     res.redirect('/changepassword')
+  }
+  else{
+    if(req.body.newPass!==req.body.confirmPass){
+      req.flash('error', 'password should  be same with Confirm  password');
+          return      res.redirect('/changepassword')
+    }
+    connection.query("select * from login  where email='"+req.user[0].email+"'",(err,result)=>{
+      if(err) throw err;
+      if(result.length>0){
+        
+        if(result){
+          
+         bcrypt.compare(req.body.oldPass,result[0].password,(err,compare)=>{
+           if(err) throw err
+           if(!compare){
+                  req.flash('error', 'Your Old Passowrd is Wrong');
+                return  res.redirect('/changepassword')
+                 }
+                 bcrypt.hash(req.body.newPass,10,(err,hash)=>{
+                  if(err) throw err  
+                  const sqll="update login set password='"+hash+"' where userId='"+result[0].userId+"'"  
+                  console.log(sqll)
+        connection.query(sqll,(err,result)=>{
+         if(err)  throw err
+      
+          req.flash('success', 'Password Successfully Changed');
+          res.redirect('/changepassword')
+         
+        })
+         })
+          
+            })
+          }
+        } 
+        })
+      }
+ })
 
 app.get('/logout',function(req, res){
     try{

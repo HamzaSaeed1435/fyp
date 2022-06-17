@@ -11,12 +11,12 @@ const auth = async (req,res,next) => {
     );
 
     let token = req.headers["authorization"];
-    // let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYiLCJyb2xlIjoic3R1ZGVudCIsImlhdCI6MTY0OTg2MzU2NCwiZXhwIjoxNjQ5OTQ5OTY0fQ.kl-SoaaXpmw9Sxmo32T9-sQDDcjxPuL0Y3XQqqoWLMs';
+    // let token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Niwicm9sZSI6InN0dWRlbnQiLCJkZWdyZWUiOiJCcy1Tb2Z0d2FyZSBFbmdpbmVlcm5nIiwiaWF0IjoxNjU1MTk1OTYwLCJleHAiOjE2NTUyODIzNjB9.dOIQ95f3-dpM1eNSita2WbGw_n500IMh45Iypo_dV-w';
     if (!token) {
       return res.status(403).send({ message: "No token provided!" });
     }
     //  const varifyuser=jwt.verify(token,process.env.SECRET_KEY,err)
-   
+  
 
      jwt.verify(token,'hamzasaeed', (err, decoded) => {
       if (err) {
@@ -25,6 +25,7 @@ const auth = async (req,res,next) => {
       
       req.userId = decoded.id;
       req.role = decoded.role;
+      req.degree=decoded.degree
       req.token = token;
       next();
       

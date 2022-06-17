@@ -1,5 +1,8 @@
 const db = require('../config/db');
 const student=require('../service/student')
+const multer  = require('multer');
+
+
 
 
    let dashboard= async (req, res) => {
@@ -94,6 +97,54 @@ let getSavedApp=async (req,res)=>{
     })
 }
 
+
+let groupSelection=async (req,res)=>{
+    const result=  await student.groupSelection(req.userId,req.body.members)
+    res.json(result)
+
+}
+
+
+let getStudents=async(req,res)=>{
+    const result=  await student.getStudents(req.userId,req.body)
+res.json(result)
+}
+
+
+let selectsupervisor=async(req,res)=>{
+    const result=  await student.selectsupervisor()
+res.json(result)
+}
+
+
+let grouprecord=async(req,res)=>{
+    // console.log(req.body)
+    const result=  await student.grouprecord(req.body)
+res.json(result)
+}
+
+let acceptpropasal=async(req,res)=>{
+    const result=  await student.acceptpropasal(req.body)
+    if(result=="")
+    {
+        res.json("No Record Found!")
+    }
+   
+    else{
+res.json(result)
+    }
+
+}
+
+
+// let propsalupload=async(req,res)=>{
+//     // const result=  await student.propsalu/pload(req.body)
+//  console.log(req.file)
+
+// }
+
+
+
    module.exports={
        dashboard,
        getLetters,
@@ -104,5 +155,10 @@ let getSavedApp=async (req,res)=>{
        addLetter,
        getProccessingApp,
        getRejectedApp,
-       getSavedApp
+       getSavedApp,
+       groupSelection,
+       getStudents,
+       selectsupervisor,
+       grouprecord,
+       acceptpropasal
    }

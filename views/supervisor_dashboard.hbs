@@ -9,15 +9,15 @@
 <meta name="description-gambolthemes" content="">
 <meta name="author-gambolthemes" content="">
 <title>Project</title>
-<link href="css/styles.css" rel="stylesheet">
-<link href="css/admin-style.css" rel="stylesheet">
+<link href="/css/styles.css" rel="stylesheet">
+<link href="/css/admin-style.css" rel="stylesheet">
 
-<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 </head>
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-light bg-clr">
-<a class="navbar-brand logo-brand" href="">Admin Panel</a>
+<a class="navbar-brand logo-brand" href="">Supervisor </a>
 <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
 
 <ul class="navbar-nav ml-auto mr-md-0">
@@ -35,30 +35,16 @@
 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 <div class="sb-sidenav-menu">
 <div class="nav">
-<a class="nav-link active" href="/Admin">
+<a class="nav-link active" href="/supervisor">
 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
 Dashboard
 </a>
 
-<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategories" aria-expanded="false" aria-controls="collapseCategories">
-<div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
-Manage Users
-<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+<a class="nav-link active" href="/proposal">
+<div class="sb-nav-link-icon"><i class="fa fa-check-square"></i></div>
+Proposal
 </a>
-<div class="collapse" id="collapseCategories" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
-<nav class="sb-sidenav-menu-nested nav">
-<a class="nav-link sub_nav_link" href="/users"> Supervisor</a>
-<a class="nav-link sub_nav_link" href="/add-user">Co-ordinator </a>
-<a class="nav-link sub_nav_link" href="/add-user">Student</a>
-<a class="nav-link sub_nav_link" href="/add-user">Staff</a>
-<a class="nav-link sub_nav_link" href="/add-user">Evaluator</a>
-</nav>
-</div>
 
-<a class="nav-link active" href="/AdminQueries">
-<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
-Student Queries
-</a>
 
 </div>
 </div>
@@ -95,44 +81,29 @@ Student Queries
 <div class="card-body-table">
 <div class="table-responsive">
 <table class="table ucp-table table-hover">
- <thead>
+   <thead>
           <tr>
            
-            <th scope="col">Name</th>
-            <th scope="col">Reg No</th>
-            <th scope="col">Gender</th>
-            <th scope="col">Degree</th>
-            <th scope="col">Type</th>
-            <th scope="col">Authority Deligated</th>
-             <th scope="col">Designation</th>
-          <th>Approvel Status</th>
-            <th scope="col">Apply Date</th>
-            <th scope="col">Approvel Date</th>
+            <th scope="col">Title</th>
+            <th scope="col">Discription</th>
+            <th scope="col">View</th>
+            <th scope="col">Approvel</th>
+           <th scope="col">Recject</th>
           </tr>
         </thead>
         <tbody>
              {{#each record}}
           <tr>
            
-            <td>{{name}}</td>
-            <td>{{reg_no}}</td>
-             <td>{{gender}}</td>
-              <td>{{degree}}</td>
-               <td>{{app_Name}}</td>
-               <td>{{Name}}</td>
-               <td>{{designation}}</td>
-     <td>{{#if approvel_status }}
-Approved
-{{else}}
-Not Approved
-{{/if}}
-     </td>
-     <td>{{apply_date}}</td>
-      <td>{{approvel_date}}</td>
+            <td>{{title}}</td>
+            <td>{{Discription}}</td>
+            <td> <a href="/supervisor/{{group_id}}" class="btn btn-primary">View Details</a></td>
+      <td> <a href="supervisor/Approve/{{group_id}}" class="btn btn-success">Approve</a></td>
+      
+      <td> <a href="supervisor/Reject/{{group_id}}" class="btn btn-danger">Reject</a></td>
           </tr>
           {{/each}}
-    <div id="layoutSidenav">
-</tbody>
+        </tbody>
 </table>
 </div>
 </div>

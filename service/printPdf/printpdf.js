@@ -32,7 +32,7 @@ fontSize(18).text(record[0].title, 133, 204, {
 });
 doc.font('Helvetica').text("")
 // Draw the 1st
-doc.font('./docoument/Inconsolata-VariableFont_wdth,wght.ttf').fontSize(17).text(`${record[0].first} ${gender.sex} ${record[0].name} ${record[0].second} ${record[0].reg_no} ${record[0].third} ${record[0].degree} ${record[0].fourth} ${gender.mr} ${record[0].fifth}`, 99, 267, {
+doc.font('./docoument/Inconsolata-VariableFont_wdth,wght.ttf').fontSize(17).text(`${record[0].first} ${gender.mr} ${record[0].name} ${record[0].second} ${record[0].reg_no} ${record[0].third} ${record[0].degree} ${record[0].fourth} ${gender.sex} ${record[0].fifth}`, 99, 267, {
     align: "left",  
 })
 // doc.moveDown()
@@ -85,7 +85,7 @@ fontSize(18).text(record[0].title, 133, 304, {
 });
 doc.font('Helvetica').text("")
 // Draw the 1st
-doc.font('./docoument/Inconsolata-VariableFont_wdth,wght.ttf').fontSize(17).text(`${record[0].first} ${gender.sex} ${record[0].name} ${record[0].second} ${record[0].reg_no} ${record[0].third} ${record[0].degree} ${record[0].fourth} ${gender.mr} ${record[0].fifth}`, 99, 367, {
+doc.font('./docoument/Inconsolata-VariableFont_wdth,wght.ttf').fontSize(17).text(`${record[0].first} ${gender.mr} ${record[0].name} ${record[0].second} ${record[0].reg_no} ${record[0].third} ${record[0].degree} ${record[0].fourth} ${gender.sex} ${record[0].fifth}  ${record[0].sixth}`, 99, 367, {
     align: "left",  
 })
 // doc.moveDown()
@@ -138,7 +138,7 @@ fontSize(18).text(record[0].title, 133, 304, {
 });
 doc.font('Helvetica').text("")
 // Draw the 1st
-doc.font('./docoument/Inconsolata-VariableFont_wdth,wght.ttf').fontSize(17).text(`${record[0].first} ${gender.sex} ${record[0].name} ${record[0].second} ${record[0].reg_no} ${record[0].third} ${record[0].degree} ${record[0].fourth} ${gender.mr} ${record[0].fifth}`, 99, 367, {
+doc.font('./docoument/Inconsolata-VariableFont_wdth,wght.ttf').fontSize(17).text(`${record[0].first} ${gender.mr} ${record[0].name} ${record[0].second} ${record[0].reg_no} ${record[0].third} ${record[0].degree} ${record[0].fourth} ${gender.sex} ${record[0].fifth} ${record[0].semester} semester.`, 99, 367, {
     align: "left",  
 })
 // doc.moveDown()
@@ -193,7 +193,7 @@ fontSize(18).text(record[0].title, 133, 304, {
 });
 doc.font('Helvetica').text("")
 // Draw the 1st
-doc.font('./docoument/Inconsolata-VariableFont_wdth,wght.ttf').fontSize(17).text(`${record[0].first} ${gender.sex} ${record[0].name} ${record[0].second} ${record[0].reg_no} ${record[0].third} ${record[0].degree} ${record[0].fourth} ${gender.mr} ${record[0].fifth} ${record[0].sixth}`, 99, 367, {
+doc.font('./docoument/Inconsolata-VariableFont_wdth,wght.ttf').fontSize(17).text(`${record[0].first} ${gender.mr} ${record[0].name} ${record[0].second} ${record[0].reg_no} ${record[0].third} ${record[0].degree} ${record[0].fourth} ${gender.sex} ${record[0].fifth} ${record[0].semester} semester. ${record[0].sixth}`, 99, 367, {
     align: "left",  
 })
 // doc.moveDown()
@@ -246,7 +246,7 @@ fontSize(18).text(record[0].title, 133, 304, {
 });
 doc.font('Helvetica').text("")
 // Draw the 1st
-doc.font('./docoument/Inconsolata-VariableFont_wdth,wght.ttf').fontSize(17).text(`${record[0].first} ${gender.sex} ${record[0].name} ${record[0].second} ${record[0].reg_no} ${record[0].third} ${record[0].degree} ${record[0].fourth} ${gender.mr} ${record[0].fifth} ${record[0].sixth}${gender.mr}${record[0].seven} ${gender.h} ${record[0].semester} ${record[0].eight}`, 99, 367, {
+doc.font('./docoument/Inconsolata-VariableFont_wdth,wght.ttf').fontSize(17).text(`${record[0].first} ${gender.mr} ${record[0].name} ${record[0].second} ${record[0].reg_no} ${record[0].third} ${record[0].degree} ${record[0].fourth} ${gender.sex} ${record[0].fifth} ${record[0].semester} semester. ${record[0].sixth} ${gender.sex} ${record[0].seven} ${gender.h} ${record[0].semester} ${record[0].eight}`, 99, 367, {
     align: "left",  
 })
 // doc.moveDown()

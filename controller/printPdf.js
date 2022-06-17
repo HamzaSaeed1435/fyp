@@ -19,7 +19,27 @@ if(!record.length){
 //         //  await  sendemail.SendEmail(record[0].email)
 //       }
 
-  const filename= await printpdfservice.D(record,gender)
+switch(record[0].subTypeId){
+    case 7 :
+         await printpdfservice.A(record,gender)
+         break;
+    case 15:
+        await printpdfservice.EPC(record,gender)
+        break;
+        case 14:
+            await printpdfservice.B(record,gender)
+            break;
+            case 17:
+                await printpdfservice.C(record,gender)
+                break;
+                case 16:
+                    await printpdfservice.D(record,gender)
+                    break;
+                    default:
+                        console.log('no such design on this sub type')
+                        break;
+}
+ 
 
 
 }

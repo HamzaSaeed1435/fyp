@@ -4,8 +4,9 @@ const studentController=require('../controller/student')
 const auth=require('../middleware/studentauth')
 const multer=require('multer')
 const router=express.Router()
+// const upload = multer({ dest: 'public/uploads/' });
 
-const upload = multer({ dest: './docoument/Application' })
+const upload = multer({ dest: './docoument/Application'})
 
 
 
@@ -24,6 +25,18 @@ const upload = multer({ dest: './docoument/Application' })
       router.get('/student/getProcessingApp',auth.auth,auth.checkStudent,studentController.getProccessingApp)
       router.get('/student/getRejectedApp',auth.auth,auth.checkStudent,studentController.getRejectedApp)
       router.get('/student/getSavedApp',auth.auth,auth.checkStudent,studentController.getSavedApp)
+
+
+      router.get('/getStudents',auth.auth,auth.checkStudent,studentController.getStudents)
+      router.post('/groupSelection',auth.auth,auth.checkStudent,studentController.groupSelection)
+      router.get('/selectsupervisor',auth.auth,auth.checkStudent,studentController.selectsupervisor)
+      router.post('/grouprecord',auth.auth,auth.checkStudent,studentController.grouprecord)
+      router.get('/acceptpropasal',auth.auth,auth.checkStudent,studentController.acceptpropasal)
+
+      // router.post('/propsalupload',auth.auth,auth.checkStudent,upload.single('upload'),(req,res)=>{
+      // console.log(req.file.filename)
+      // })
+
 
 
       module.exports=router;

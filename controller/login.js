@@ -7,6 +7,7 @@ let getPageLogin = (req, res) => {
       error:req.flash('error')
     });
 };
+
 let handleLogin = async (req, res,next) => {
   
     try {
@@ -41,13 +42,19 @@ let handleLogin = async (req, res,next) => {
      if(user.role==='approvel_authority'){
      
       res.redirect('./Approvel_Authority')
-    }
-    if(user.role==='student'){
-  
-      res.redirect('./student')
     } if(user.role==='staff'){
   
       res.redirect('./staff')
+    }if(user.role==='supervisor'){
+  
+      res.redirect('./supervisor')
+    }
+    if(user.role==='coordinator'){
+ 
+      res.redirect('./coordinator')
+    } if(user.role==='evaluvator'){
+ 
+      res.redirect('./evaluvator')
     }
           }else{
           req.flash('error', 'Invalid Crediantials...!!!!!!!');
@@ -64,12 +71,14 @@ let handleLogin = async (req, res,next) => {
 let handlestudentLogin = async (req, res,next) => {
   
   try {
-      let user=await loginService.handleLogin(req.body.email, req.body.password);
-
-      if (user && (await bcrypt.compare(req.body.password, user.password))) { 
+      let users=await loginService.handleLogin(req.body.email, req.body.password);
+      let user=await loginService.handleLogin2(users.userId);
+     console.log(user)
+      if (user && (await bcrypt.compare(req.body.password, users.password))) { 
               const token = jwt.sign(
-              { id: user.userId,
-                role: user.role
+              { id: user.studentId,
+                role: user.role,
+                degree:user.degree
                },
               'hamzasaeed',
               {

@@ -4,6 +4,20 @@ const { reject } = require('promise');
 const promise=require('promise');
 const db = require('../config/db');
 const connection=require('../config/db')
+const { v4: uuidv4 } = require('uuid');
+const { response } = require('express');
+const multer  = require('multer');
+
+// const storage = multer.diskStorage({
+//     destination: function (req, file, cb) {
+//       cb(null, 'public/uploads')
+//     },
+//     filename: function (req, file, cb) {
+//       cb(null, file.originalname)
+//       // cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
+//     },  
+//   });
+
 
 let userDetail=(id)=>{
 
@@ -207,7 +221,130 @@ let getProccessingApp=(id)=>{
             })
             }
 
-  
+
+            let groupSelection=(id,members)=>{
+                groupID=uuidv4();
+                return new promise((resolve,reject)=>{
+                    for(var i=0;i<members.length+1;i++){
+                       if(i==2){
+                        const  sql= 'insert into group_member (studentId,groupId) VALUES(?,?)'
+                        connection.query(sql,[id,groupID],(error,result)=>{
+                            if(error){
+                                reject(error)
+                            }
+                        })
+                       }
+                       else{
+                        const  sql= 'insert into group_member (studentId,groupId) VALUES(?,?)'
+                    connection.query(sql,[members[i],groupID],(error,result)=>{
+                        if(error){
+                            reject(error)
+                        }
+                    })
+                       }
+                    
+                    }
+                    resolve("success")
+                })
+                }
+    
+
+                let getStudents=(degree)=>{
+
+                    return new promise((resolve,reject)=>{
+                        const  sql= 'SELECT * FROM student where degree=?'
+                
+                        connection.query(sql,[degree],(error,result)=>{
+                            if(error){
+                                reject(error)
+                            }else{
+                                
+                                resolve(result)  
+                               
+                    }
+                        })
+                    })
+                    }
+                
+
+                    let selectsupervisor=()=>{
+
+                        return new promise((resolve,reject)=>{
+                            const  sql= 'SELECT * FROM supervisor'
+                    
+                            connection.query(sql,(error,result)=>{
+                                if(error){
+                                    reject(error)
+                                }else{
+                                    
+                                    resolve(result)  
+                                   
+                        }
+                            })
+                        })
+                        }
+
+                    let grouprecord=(data)=>{
+                            console.log(data)
+
+                            return new promise((resolve,reject)=>{
+                                const  sql= 'insert into groups_record (title,sup_Id,Discription,member_id) values(?,?,?,?)'
+                        
+                                connection.query(sql,[data.title,data.sup_Id,data.Discription,data.member_id],(error,result)=>{
+                                    if(error){
+                                        reject(error)
+                                    }else{
+                                        
+                                        resolve(result)  
+                            }
+                                })
+                            })
+                            }
+
+
+                        let acceptpropasal=(data)=>{
+
+                                return new promise((resolve,reject)=>{
+                                    const  sql= 'SELECT * FROM groups_record where status = 1 AND group_id=? '
+                            
+                                    connection.query(sql,[data.group_id],(error,result)=>{
+                                        if(error){
+                                            reject(error)
+                                        }else{
+                                            
+                                            resolve(result)  
+                                            // response.render("sucess")
+
+                                           
+                                }
+                                    })
+                                })
+                                }
+
+
+
+
+                                // let propsalupload=(data)=>{
+
+                                //     return new promise((resolve,reject)=>{
+                                //         const  sql= 'INSERT INTO  groups_record(propsal) VALUES(?)';
+
+                                
+                                //         connection.query(sql,[data.propasal],(error,result)=>{
+                                //             if(error){
+                                //                 reject(error)
+                                //             }else{
+                                                
+                                //                 resolve(result)  
+    
+                                               
+                                //     }
+                                //         })
+                                //     })
+                                //     }
+    
+
+                        
 
 
 
@@ -225,7 +362,12 @@ module.exports={
     getCertificate,
     getProccessingApp,
     getRejectedApp,
-    getSavedApp
+    getSavedApp,
+    groupSelection,
+    getStudents,
+    selectsupervisor,
+    grouprecord,
+    acceptpropasal
 
 
 }
