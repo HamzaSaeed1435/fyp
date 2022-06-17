@@ -106,7 +106,7 @@ let groupSelection=async (req,res)=>{
 
 
 let getStudents=async(req,res)=>{
-    const result=  await student.getStudents(req.userId,req.body)
+    const result=  await student.getStudents(req.userId)
 res.json(result)
 }
 
