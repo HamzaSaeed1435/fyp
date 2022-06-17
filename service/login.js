@@ -36,28 +36,9 @@ let findUserByEmail =  (email) => {
     });
 };
 
-let handleLogin2 =  (id) => {
-   
-    return new Promise((resolve,reject) => {
-            var  sql="SELECT * FROM `student` WHERE studentId =?";
-            try{
-                connection.query(sql,[id],(err,rows)=>{
-                    if(!err)
-                    {
-                        user=rows[0];
-                        resolve(user)
-                        // console.log(rows)
-                    }
-                    reject(err)
-                    });
-            }catch (err) {
-                reject(`This user email "${email}" doesn't exist`)
-            }
-    });
-};
+
 module.exports = {
     handleLogin: handleLogin,
     findUserByEmail: findUserByEmail,
-    handleLogin2
 
 };
