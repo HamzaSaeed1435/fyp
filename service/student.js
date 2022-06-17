@@ -252,7 +252,8 @@ let getProccessingApp=(id)=>{
                 let getStudents=(degree)=>{
 
                     return new promise((resolve,reject)=>{
-                        const  sql= 'SELECT * FROM student where degree=?'
+                        const  sql= 'SELECT * FROM student where degree =?'
+                        // console.log(degree)
                 
                         connection.query(sql,[degree],(error,result)=>{
                             if(error){
@@ -324,24 +325,47 @@ let getProccessingApp=(id)=>{
 
 
 
-                                // let propsalupload=(data)=>{
+                                let propsalupload=(data,id)=>{
 
-                                //     return new promise((resolve,reject)=>{
-                                //         const  sql= 'INSERT INTO  groups_record(propsal) VALUES(?)';
+                                    return new promise((resolve,reject)=>{
+                                        const  sql= "UPDATE groups_record SET propsal= ? WHERE group_id = ?";
 
                                 
-                                //         connection.query(sql,[data.propasal],(error,result)=>{
-                                //             if(error){
-                                //                 reject(error)
-                                //             }else{
+                                        connection.query(sql,[data,id.group_id],(error,result)=>{
+                                            if(error){
+                                                reject(error)
+                                            }else{
                                                 
-                                //                 resolve(result)  
+                                                resolve(result)  
     
                                                
-                                //     }
-                                //         })
-                                //     })
-                                //     }
+                                    }
+                                        })
+                                    })
+                                    }
+
+
+
+
+
+                                    let documentupload=(data,id)=>{
+
+                                        return new promise((resolve,reject)=>{
+                                            const  sql= "UPDATE groups_record SET documentation= ? WHERE group_id = ?";
+    
+                                    
+                                            connection.query(sql,[data,id.group_id],(error,result)=>{
+                                                if(error){
+                                                    reject(error)
+                                                }else{
+                                                    
+                                                    resolve(result)  
+        
+                                                   
+                                        }
+                                            })
+                                        })
+                                        }
     
 
                         
@@ -367,7 +391,7 @@ module.exports={
     getStudents,
     selectsupervisor,
     grouprecord,
-    acceptpropasal
-
-
+    acceptpropasal,
+    propsalupload,
+    documentupload
 }

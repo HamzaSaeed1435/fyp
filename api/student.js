@@ -32,11 +32,8 @@ const upload = multer({ dest: './docoument/Application'})
       router.get('/selectsupervisor',auth.auth,auth.checkStudent,studentController.selectsupervisor)
       router.post('/grouprecord',auth.auth,auth.checkStudent,studentController.grouprecord)
       router.get('/acceptpropasal',auth.auth,auth.checkStudent,studentController.acceptpropasal)
-
-      // router.post('/propsalupload',auth.auth,auth.checkStudent,upload.single('upload'),(req,res)=>{
-      // console.log(req.file.filename)
-      // })
-
+      router.post('/propsalupload',auth.auth,auth.checkStudent,upload.single('upload'),studentController.propsalupload)
+      router.post('/documentupload',auth.auth,auth.checkStudent,upload.single('upload'),studentController.documentupload)
 
 
       module.exports=router;

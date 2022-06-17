@@ -106,7 +106,7 @@ let groupSelection=async (req,res)=>{
 
 
 let getStudents=async(req,res)=>{
-    const result=  await student.getStudents(req.userId)
+    const result=  await student.getStudents(req.degree)
 res.json(result)
 }
 
@@ -137,12 +137,35 @@ res.json(result)
 }
 
 
-// let propsalupload=async(req,res)=>{
-//     // const result=  await student.propsalu/pload(req.body)
-//  console.log(req.file)
+let propsalupload=async(req,res)=>{
+    
+ const result=  await student.propsalupload(req.file.filename,req.body)
 
-// }
+ if(result=="")
+ {
+    
+ }
 
+ else{
+res.json(result)
+ }
+}
+
+
+
+let documentupload=async(req,res)=>{
+    
+    const result=  await student.documentupload(req.file.filename,req.body)
+   
+    if(result=="")
+    {
+       
+    }
+   
+    else{
+   res.json(result)
+    }
+   }
 
 
    module.exports={
@@ -160,5 +183,7 @@ res.json(result)
        getStudents,
        selectsupervisor,
        grouprecord,
-       acceptpropasal
+       acceptpropasal,
+       propsalupload,
+       documentupload
    }
