@@ -64,12 +64,15 @@ let handleLogin = async (req, res,next) => {
 let handlestudentLogin = async (req, res,next) => {
   
   try {
-      let user=await loginService.handleLogin(req.body.email, req.body.password);
-
-      if (user && (await bcrypt.compare(req.body.password, user.password))) { 
+      let users=await loginService.handleLogin(req.body.email, req.body.password);
+   
+  
+      if (users && (await bcrypt.compare(req.body.password, users.password))) { 
+        let user=await loginService.handleLogin2(users.userId);
               const token = jwt.sign(
-              { id: user.userId,
-                role: user.role
+              { id: user.studentId,
+                role: user.role,
+                degree:user.degree
                },
               'hamzasaeed',
               {
