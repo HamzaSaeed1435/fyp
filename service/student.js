@@ -419,7 +419,9 @@ var otp=otpGenerator.generate(4, { upperCaseAlphabets: false, specialChars: fals
 
             return new promise((resolve,reject)=>{
                 connection.query("select * from student  where email='"+email+"'",(err,result)=>{
-console.log(result)
+if(result==""){
+    resolve('Email not exist')
+}else{
                 bcrypt.hash(pass,10,(err,hash)=>{
                     if(err) throw err  
                     const sqll="update login set password='"+hash+"' where userId="+result[0].studentId  
@@ -432,6 +434,7 @@ console.log(result)
            
           })
            })
+        }
             })
         })
             }
