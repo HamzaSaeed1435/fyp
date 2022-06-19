@@ -422,12 +422,12 @@ var otp=otpGenerator.generate(4, { upperCaseAlphabets: false, specialChars: fals
 
                 bcrypt.hash(pass,10,(err,hash)=>{
                     if(err) throw err  
-                    const sqll="update login set password='"+hash+"' where userId='"+result[0].studentId+"'"  
-                   
+                    const sqll="update login set password='"+hash+"' where userId="+result[0].studentId  
+                  
           connection.query(sqll,(err,result)=>{
            if(err) reject(err)
         
-           resolve('Password Successfully Changed')
+           resolve(result)
   
            
           })
