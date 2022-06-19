@@ -6,6 +6,11 @@ const db = require('../config/db');
 const connection=require('../config/db')
 const { v4: uuidv4 } = require('uuid');
 const { response } = require('express');
+const nodemailer = require("nodemailer");
+var http = require("https");
+const otpGenerator = require('otp-generator')
+const bcrypt = require('bcryptjs');
+
 const multer  = require('multer');
 
 // const storage = multer.diskStorage({
@@ -362,15 +367,75 @@ let getProccessingApp=(id)=>{
                                                     resolve(result)  
         
                                                    
-                                        }
-                                            })
-                                        })
-                                        }
+  }
+       })
+    })
+      }
+      
     
+      let forgetpassword=(email)=>{
 
+var otp=otpGenerator.generate(4, { upperCaseAlphabets: false, specialChars: false })
+
+        return new promise((resolve,reject)=>{
+                var options = {
+                    "method": "POST",
+                    "hostname": "emailapi.netcorecloud.net",
+                    "port": null,
+                    "path": "/v5/mail/send",
+                    "headers": {
+                      "api_key": "e8284c17407e4384ade0c88e8f43481a",
+                      "content-type": "application/json"
+                    }
+                  };
+                  
+                  var req = http.request(options, function (res) {
+                    var chunks = [];
+                  
+                    res.on("data", function (chunk) {
+                      chunks.push(chunk);
+                    });
+                  
+                    res.on("end", function () {
+                      var body = Buffer.concat(chunks);
+                         resolve(otp)
+                    //  console.log(body.toString());
+                    });
+                  });
+                  
+                  req.write(JSON.stringify({
+                    from: {email: 'hamzasaeed4689@pepisandbox.com', name: 'UIIT Department'},
+                    subject: 'Password Reset...!!!',
+                    content: [{type: 'html', value: 'your OTP  for password Reset is '+'<br>'+ otp}],
+                    personalizations: [{to: [{email: email, name: email}]}]
+                  }));
+                  req.end();
+               
+        })
+        }
                         
 
+        let passReset=(email,pass)=>{
 
+            return new promise((resolve,reject)=>{
+                connection.query("select * from student  where email='"+email+"'",(err,result)=>{
+
+                bcrypt.hash(pass,10,(err,hash)=>{
+                    if(err) throw err  
+                    const sqll="update login set password='"+hash+"' where userId='"+result[0].studentId+"'"  
+                   
+          connection.query(sqll,(err,result)=>{
+           if(err) reject(err)
+        
+           resolve('Password Successfully Changed')
+  
+           
+          })
+           })
+            })
+        })
+            }
+                                        
 
 module.exports={
     userDetail,
@@ -393,5 +458,7 @@ module.exports={
     grouprecord,
     acceptpropasal,
     propsalupload,
-    documentupload
+    documentupload,
+    forgetpassword,
+    passReset
 }

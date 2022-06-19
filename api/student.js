@@ -34,6 +34,11 @@ const upload = multer({ dest: './docoument/Application'})
       router.get('/acceptpropasal',auth.auth,auth.checkStudent,studentController.acceptpropasal)
       router.post('/propsalupload',auth.auth,auth.checkStudent,upload.single('upload'),studentController.propsalupload)
       router.post('/documentupload',auth.auth,auth.checkStudent,upload.single('upload'),studentController.documentupload)
+     
+     
+      router.post('/forgetpass',studentController.forgetpassword)
+      router.post('/passReset',studentController.passReset)
+
 
 
       module.exports=router;

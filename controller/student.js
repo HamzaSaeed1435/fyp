@@ -140,15 +140,8 @@ res.json(result)
 let propsalupload=async(req,res)=>{
     
  const result=  await student.propsalupload(req.file.filename,req.body)
-
- if(result=="")
- {
-    
- }
-
- else{
 res.json(result)
- }
+
 }
 
 
@@ -156,17 +149,25 @@ res.json(result)
 let documentupload=async(req,res)=>{
     
     const result=  await student.documentupload(req.file.filename,req.body)
-   
-    if(result=="")
-    {
-       
-    }
-   
-    else{
    res.json(result)
-    }
+    
    }
 
+   let forgetpassword=async(req,res)=>{
+    const result=  await student.forgetpassword(req.body.email)
+
+    res.json({
+        otp:result,
+        status:'Email send succesfuly'
+    })
+   }
+
+   let passReset=async(req,res)=>{
+    const result=  await student.passReset(req.body.email,req.body.pass)
+
+    res.json(result)
+   }
+   
 
    module.exports={
        dashboard,
@@ -185,5 +186,7 @@ let documentupload=async(req,res)=>{
        grouprecord,
        acceptpropasal,
        propsalupload,
-       documentupload
+       documentupload,
+       forgetpassword,
+       passReset
    }
