@@ -29,7 +29,7 @@ let approve= async (req,res)=>{
 
    let getDetails=async (req,res)=>{
     let record=await supervisor.groupDetails(req.params.id,req.user[0].sup_id)
-    let groupMember=await supervisor.groupMember(record[0].member_id)
+    let groupMember=await supervisor.group(record[0].member_id)
 
     res.render("groups_record.hbs",{record:record,groupMember:groupMember});
    }

@@ -9,15 +9,15 @@
 <meta name="description-gambolthemes" content="">
 <meta name="author-gambolthemes" content="">
 <title>Project</title>
-<link href="/css/styles.css" rel="stylesheet">
-<link href="/css/admin-style.css" rel="stylesheet">
+<link href="css/styles.css" rel="stylesheet">
+<link href="css/admin-style.css" rel="stylesheet">
 
-<link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-<link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
+<link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+<link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
 </head>
 <body class="sb-nav-fixed">
 <nav class="sb-topnav navbar navbar-expand navbar-light bg-clr">
-<a class="navbar-brand logo-brand" href="">Evaluvator </a>
+<a class="navbar-brand logo-brand" href="">Admin Panel</a>
 <button class="btn btn-link btn-sm order-1 order-lg-0" id="sidebarToggle" href="#"><i class="fas fa-bars"></i></button>
 
 <ul class="navbar-nav ml-auto mr-md-0">
@@ -35,15 +35,30 @@
 <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">
 <div class="sb-sidenav-menu">
 <div class="nav">
-<a class="nav-link active" href="/evaluvator">
+<a class="nav-link active" href="/Admin">
 <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
 Dashboard
 </a>
 
-{{!-- <a class="nav-link active" href="/fyp">
-<div class="sb-nav-link-icon"><i class="fa fa-check-square"></i></div>
-fyp</a> --}}
+<a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseCategories" aria-expanded="false" aria-controls="collapseCategories">
+<div class="sb-nav-link-icon"><i class="fas fa-users"></i></div>
+Manage Users
+<div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div>
+</a>
+<div class="collapse" id="collapseCategories" aria-labelledby="headingTwo" data-parent="#sidenavAccordion">
+<nav class="sb-sidenav-menu-nested nav">
+<a class="nav-link sub_nav_link" href="/users"> Supervisor</a>
+<a class="nav-link sub_nav_link" href="/add-user">Co-ordinator </a>
+<a class="nav-link sub_nav_link" href="/add-user">Student</a>
+<a class="nav-link sub_nav_link" href="/add-user">Staff</a>
+<a class="nav-link sub_nav_link" href="/add-user">Evaluator</a>
+</nav>
+</div>
 
+<a class="nav-link active" href="/AdminQueries">
+<div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
+Student Queries
+</a>
 
 </div>
 </div>
@@ -52,85 +67,40 @@ fyp</a> --}}
 <div id="layoutSidenav_content">
 <main>
 <div class="container-fluid">
-<h2 class="mt-30 page-title">All Queries </h2>
+<h2 class="mt-30 page-title">Staff</h2>
 <ol class="breadcrumb mb-30">
-<li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
-<li class="breadcrumb-item active">All Queries</li>
+<li class="breadcrumb-item"><a href="">Dashboard</a></li>
+<li class="breadcrumb-item"><a href="">Staff</a></li>
+<li class="breadcrumb-item active">Add Staff</li>
 </ol>
 <div class="row">
-<div class="col-lg-4 col-md-5">
+<div class="col-lg-6 col-md-6">
 <div class="card card-static-2 mb-30">
 <div class="card-title-2">
-<h4> 
-{{#each record}}
-{{title}}
-
-
-     
-</h4>
+<h4>Add New Staff</h4>
 </div>
+<form method="post" action="addStaff" >
 <div class="card-body-table">
 <div class="news-content-right pd-20">
-
-
-{{Discription}}
-
-</div>
-</div>
-{{/each}}
-</div>
-</div>
-<div class="col-lg-8 col-md-7">
-<div class="all-cate-tags">
-<div class="row">
-<div class="col-lg-12 col-md-12">
-<div class="card card-static-2 mb-30">
-<div class="card-title-2">
-<h4>Group Members</h4>
-</div>
-<div class="card-body-table">
-<div class="table-responsive">
-<table class="table ucp-table table-hover">
-<thead>
-<tr>
-<th>Name</th>
-<th>Reg_No</th>
-<th>Degree</th>
-
-</tr>
-</thead>
-<tbody>
-     {{#each groupMember}}
-<tr>
-   
-<td>{{name}}</td>
-<td>{{reg_no}}</td>
-<td>{{degree}}</td>
-
-</tr>
-{{/each}}
-</tbody>
-</table>
-</div>
-</div>
-<div class="card-body-table-footer">
-<ul>
-    {{#each record}}
-    <li><a href="/viewproposal/{{proposal}}"><button class="download-btn btn-primary">View Proposal</button></a></li>
-
-{{/each}}
-</ul>
-</div>
+<div class="form-group">
+<label class="form-label">Name*</label>
+<input type="text" class="form-control" name="name" required placeholder="Name">
 </div>
 
+
+<div class="form-group">
+<label class="form-label">Email*</label>
+<input type="text" class="form-control" name="email" required placeholder="Email">
+</div>
+<button class="save-btn hover-btn" type="submit">Add Staff</button>
 </div>
 </div>
+</form>
 </div>
 </div>
 </div>
 </div>
 </main>
-
 <footer class="py-4 bg-footer mt-auto">
 <div class="container-fluid">
 <div class="d-flex align-items-center justify-content-between small">
@@ -141,6 +111,6 @@ fyp</a> --}}
 </div>
 </div>
 </footer>
-<script src="/js/jquery-3.4.1.min.js"></script>
-<script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-<script src="/js/scripts.js"></script>
+<script src="js/jquery-3.4.1.min.js"></script>
+<script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="js/scripts.js"></script>

@@ -25,8 +25,35 @@ router.get('/AdminQueries',auth.auth,auth.checkAdmin,AdminQueries.getRecord,(req
 
 router.get('/Admin',auth.auth,auth.checkAdmin,AdminQueries.dashobard)
 
+router.get('/addSupervisor',auth.auth,auth.checkAdmin,(req,res)=>{
+    res.render('addSupervisor.hbs')
+
+})
+router.get('/addCoordinator',auth.auth,auth.checkAdmin,(req,res)=>{
+    res.render('addCoordinator.hbs')
+
+})
+router.get('/addEvaluavator',auth.auth,auth.checkAdmin,(req,res)=>{
+    res.render('addEva.hbs')
+
+})
+
+router.get('/addStaff',auth.auth,auth.checkAdmin,(req,res)=>{
+    res.render('addStaff.hbs')
+
+})
+
+router.get('/addStudent',auth.auth,auth.checkAdmin,(req,res)=>{
+    res.render('addStudent.hbs')
+
+})
 
 
+router.post('/addSupervisor',auth.auth,auth.checkAdmin,AdminQueries.addSupervisor)
+router.post('/addCoordinator',auth.auth,auth.checkAdmin,AdminQueries.addCoordinator)
+router.post('/addEvaluavator',auth.auth,auth.checkAdmin,AdminQueries.addEvaluavator)
+router.post('/addStaff',auth.auth,auth.checkAdmin,AdminQueries.addStaff)
+router.post('/addStudent',auth.auth,auth.checkAdmin,AdminQueries.addStudent)
 // router.get('/approvel_authority',auth.auth,auth.checkAdmin,AdminQueries.addApprovel_authority)
 
 

@@ -539,5 +539,8 @@ module.exports={
     documentupload,
     forgetpassword,
     passReset,
-
+    showevaluator,
+    showeval,
+    showmarks,
+    showcoordinator
 }

@@ -7,8 +7,9 @@ let dashobard=async(req,res)=>{
     const cor = await AdminQueries.CountCoordinator()
     const stu = await AdminQueries.CountStudents()
     const Eva = await AdminQueries.CountEvaluvator()
+    const staff = await AdminQueries.CountStaff()
 
-res.render('AdminDashboard.hbs',{sup:sup[0].count,cor:cor[0].count,stu:stu[0].count,Eva:Eva[0].count})
+res.render('AdminDashboard.hbs',{sup:sup[0].count,cor:cor[0].count,stu:stu[0].count,Eva:Eva[0].count,staff:staff[0].count})
 }
 
 let getRecord = async (req, res) => {
@@ -52,7 +53,40 @@ let getStudents = async (req, res) => {
        return res.render("coordinators.hbs",{record:record});
    };
    
+   let  addSupervisor = async (req, res) => {
+     
+    const record = await AdminQueries. addSupervisor(req.body)
+    // console.log(record)
+       return res.render("addSupervisor.hbs");
+   };
+   let  addCoordinator = async (req, res) => {
+     
+    const record = await AdminQueries. addCoordinator(req.body)
+    // console.log(record)
+       return res.render("addCoordinator.hbs");
+   };
    
+     let  addEvaluavator = async (req, res) => {
+     
+    const record = await AdminQueries. addEvaluavator(req.body)
+       return res.render("addEva.hbs");
+   };
+
+
+   let  addStaff = async (req, res) => {
+    const record = await AdminQueries.addStaff(req.body)
+       return res.render("addStaff.hbs");
+   };
+
+   let  addStudent = async (req, res) => {
+    const record = await AdminQueries.addStudent(req.body)
+       return res.render("addStudent.hbs");
+   };
+
+
+
+
+
 
 // let addApprovel_authority=(req,res)=>{
 //     const {Name,Email,designation}=req.body
@@ -74,7 +108,12 @@ module.exports = {
     getEvaluators:getEvaluators,
     getSupervisors,
     getCoordinator,
-    dashobard
+    dashobard,
+    addSupervisor,
+    addCoordinator,
+    addEvaluavator,
+    addStaff,
+    addStudent
 
 // addApprovel_authority
 };

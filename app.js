@@ -50,12 +50,12 @@ app.use(cookieParser());
 app.use('/',require('./api/login'))
 app.use('/',require('./api/student'))
 
-// app.use('/',require('./api/admin'))
-// app.use('/',require('./api/approvel_authority.js'))
-// app.use('/',require('./api/Staff'))
-// app.use('/',require('./api/supervisor.js'))
-// app.use('/',require('./api/coordinator.js'))
-// app.use('/',require('./api/evaluvator.js'))
+app.use('/',require('./api/admin'))
+app.use('/',require('./api/approvel_authority.js'))
+app.use('/',require('./api/Staff'))
+app.use('/',require('./api/supervisor.js'))
+app.use('/',require('./api/coordinator.js'))
+app.use('/',require('./api/evaluvator.js'))
 
 
 app.get('/',(req,res)=>{

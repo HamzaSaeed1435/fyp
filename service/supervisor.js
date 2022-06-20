@@ -71,6 +71,21 @@ let groupDetails=(id,sup_id)=>{
         })
     })
 }
+let group=(id,sup_id)=>{
+    return new promise((resolve,reject)=>{
+        // const  sql= 'SELECT * FROM group_member m LEFT JOIN student s ON m.studentId = s.studentId LEFT JOIN marks mark ON m.studentId=mark.studentId LEFT JOIN evaluvation_type ev ON mark.evaluvationType_id=ev.id WHERE groupId=? AND mark.evaluteId=? '
+        const sql='SELECT * FROM `group_member` G LEFT JOIN  student S ON g.studentId=s.studentId  WHERE groupId=?'     
+        connection.query(sql,[id],(error,result)=>{
+            if(error){
+                reject(error)
+            }else{
+// console.log(result)
+                resolve(result)  
+    }
+        })
+    })
+}
+
 
 
 let groupMember=(id,sup_id)=>{
@@ -162,5 +177,6 @@ module.exports={
     proposal:proposal,
     proposalDetail:proposalDetail,
     insertmarks:insertmarks,
-    Member:Member
+    Member:Member,
+    group
 }
