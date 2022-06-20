@@ -420,7 +420,8 @@ var otp=otpGenerator.generate(4, { upperCaseAlphabets: false, specialChars: fals
             return new promise((resolve,reject)=>{
                 connection.query("select * from student  where email='"+email+"'",(err,result)=>{
 if(result==""){
-    resolve('Email not exist in our system')
+    resolve({
+        status:'Email not exist in our system'})
 }else{
                 bcrypt.hash(pass,10,(err,hash)=>{
                     if(err) throw err  
