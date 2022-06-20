@@ -35,6 +35,9 @@ const upload = multer({ dest: './docoument/Application'})
       router.post('/propsalupload',auth.auth,auth.checkStudent,upload.single('upload'),studentController.propsalupload)
       router.post('/documentupload',auth.auth,auth.checkStudent,upload.single('upload'),studentController.documentupload)
      
+      router.get('/showevaluator',auth.auth,auth.checkStudent,studentController.showevaluator)
+      router.get('/showcoordinator',auth.auth,auth.checkStudent,studentController.showcoordinator)
+      router.get('/showmarks',auth.auth,auth.checkStudent,studentController.showmarks)
      
       router.post('/forgetpass',studentController.forgetpassword)
       router.post('/passReset',studentController.passReset)

@@ -47,9 +47,10 @@ let fyp=async(req,res)=>{
        
        let result =async (req,res)=>{
        
-        let record=await coordinator.result(req.params.id)
-        let groupEvaluvator=await coordinator.groupEvaluvator(req.params.id)
-        res.render("coordinatorResult.hbs",{record,groupEvaluvator});
+        let recordEva=await coordinator.resultEvaluvator(req.params.id)
+        let recordSup=await coordinator.resultSupervisor(req.params.id)
+        let groupEvaluvator=await coordinator.groupEvaluvator(req.params.groupId)
+        res.render("coordinatorResult.hbs",{recordEva,recordSup,groupEvaluvator});
        }
         
       

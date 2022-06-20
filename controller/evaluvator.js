@@ -27,14 +27,16 @@ let getDetails=async (req,res)=>{
 
    let EvaluvateMarks=async (req,res)=>{
     let typeId=req.params.typeId
-    let record=await evaluvator.EvaluvateMarks(req.params.id,req.user[0].id)
+   
+
+    let record=await evaluvator.EvaluvateMarks(req.params.id,req.user[0].id,req.user[0].role)
     let  Member=await evaluvator.Member(req.params.id)
 
     res.render("evaluvatorMarks.hbs",{record,typeId,Member,groupId:Member[0].groupId});
    }
    
    let InsertEvaluvatormarks=async (req,res)=>{
-  console.log(req.body)
+ 
     let record=await evaluvator.InsertEvaluvatormarks(req.user[0].id,req.body)
 res.redirect("/evaluvator")
    }

@@ -101,13 +101,25 @@ fyp</a> --}}
 </tr>
 </thead>
 <tbody>
-     {{#each record}}
+     {{#each recordSup}}
+<tr>
+   
+<td>{{name}}</td>
+<td>{{degree}}</td>
+<td>{{sup_name}}</td>
+<td>Supervisor</td>
+<td>{{type}}</td>
+<td>{{marks}}</td>
+
+</tr>
+{{/each}}
+     {{#each recordEva}}
 <tr>
    
 <td>{{name}}</td>
 <td>{{degree}}</td>
 <td>{{email}}</td>
-<td>{{role}}</td>
+<td>Evaluvator</td>
 <td>{{type}}</td>
 <td>{{marks}}</td>
 

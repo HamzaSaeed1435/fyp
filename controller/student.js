@@ -169,6 +169,38 @@ let documentupload=async(req,res)=>{
    }
    
 
+
+   let showevaluator=async (req,res)=>{
+    const result=  await student.showevaluator(req.body)
+    res.json({
+        result:result
+    })
+}
+
+
+
+
+let showcoordinator=async (req,res)=>{
+    const result=  await student.showcoordinator(req.body)
+    res.json({
+        result:result
+    })
+}
+
+
+
+let showmarks=async (req,res)=>{
+    
+  
+    const result=  await student.showmarks(req.userId)
+    const result1=  await student.showeval(req.userId)
+
+    res.json({
+        supervisor:result,
+        evaluvator:result1
+    })
+}
+
    module.exports={
        dashboard,
        getLetters,
@@ -188,5 +220,8 @@ let documentupload=async(req,res)=>{
        propsalupload,
        documentupload,
        forgetpassword,
-       passReset
+       passReset,
+       showevaluator,
+       showcoordinator,
+       showmarks
    }

@@ -420,7 +420,7 @@ var otp=otpGenerator.generate(4, { upperCaseAlphabets: false, specialChars: fals
             return new promise((resolve,reject)=>{
                 connection.query("select * from student  where email='"+email+"'",(err,result)=>{
 if(result==""){
-    resolve('Email not exist')
+    resolve('Email not exist in our system')
 }else{
                 bcrypt.hash(pass,10,(err,hash)=>{
                     if(err) throw err  
@@ -438,7 +438,82 @@ if(result==""){
             })
         })
             }
+      
+            let showevaluator=(data)=>{
+
+                return new promise((resolve,reject)=>{
+                    const sql= 'SELECT * FROM evaluvation e LEFT JOIN evaluvation_type et ON e.evaluvationType_id = et.id LEFT JOIN evaluvator ev ON e.evaluteId_1  = ev.id OR e.evaluteId_2  = ev.id Where groupId=?';
+            
+                    connection.query(sql,[data.groupId],(error,result)=>{
+                        if(error){
+                            reject(error)
+                        }else{
+                            
+                            resolve(result)  
+
+                           
+                }
+                    })
+                })
+                }
+
+                let showcoordinator=(data)=>{
+
+                    return new promise((resolve,reject)=>{
+                        const sql= 'SELECT g.sup_Id, cs.co_id, c.id, c.name, c.email, c.role  FROM groups_record g LEFT JOIN coordinator_sup cs ON g.sup_Id = cs.co_id LEFT JOIN coordinator c ON cs.co_id = c.id  Where group_id = ?';
+                
+                        connection.query(sql,[data.group_id],(error,result)=>{
+                            if(error){
+                                reject(error)
+                            }else{
+                                
+                                resolve(result)  
+
+                               
+                    }
+                        })
+                    })
+                    }
+
+
+
+                    let showmarks=(id)=>{
+
+                        return new promise((resolve,reject)=>{
+                            const sql= "SELECT * FROM marks m LEFT JOIN evaluvation_type et ON m.evaluvationType_id = et.id LEFT JOIN student s ON m.studentId=s.studentId LEFT JOIN supervisor sup ON m.evaluteId=sup.sup_id  Where m.studentId=? AND m.role=?";
+                    
+                            connection.query(sql,[id,'supervisor'],(error,result)=>{
+                                if(error){
+                                    reject(error)
+                                }else{
+                                    
+                                    resolve(result)  
+
+                                   
+                        }
+                            })
+                        })
+                        }
+
+
+                        let showeval=(id)=>{
+
+                            return new promise((resolve,reject)=>{
+                                const sql= "SELECT * FROM marks m LEFT JOIN evaluvation_type et ON m.evaluvationType_id = et.id LEFT JOIN student s ON m.studentId=s.studentId LEFT JOIN evaluvator e ON m.evaluteId=e.id  Where m.studentId=? AND m.role=?";
+                        
+                                connection.query(sql,[id,'evaluvator'],(error,result)=>{
+                                    if(error){
+                                        reject(error)
+                                    }else{
                                         
+                                        resolve(result)  
+
+                                       
+                            }
+                                })
+                            })
+                            }
+          
 
 module.exports={
     userDetail,
@@ -463,5 +538,6 @@ module.exports={
     propsalupload,
     documentupload,
     forgetpassword,
-    passReset
+    passReset,
+
 }

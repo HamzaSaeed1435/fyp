@@ -49,6 +49,18 @@ let handleLogin = async (req, res,next) => {
   
       res.redirect('./staff')
     }
+    if(user.role==='supervisor'){
+  
+      res.redirect('./supervisor')
+    }
+    if(user.role==='coordinator'){
+  
+      res.redirect('./coordinator')
+    }
+    if(user.role==='evaluvator'){
+  
+      res.redirect('./evaluvator')
+    }
           }else{
           req.flash('error', 'Invalid Crediantials...!!!!!!!');
         return res.redirect("/login");

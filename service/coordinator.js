@@ -159,12 +159,28 @@ let updateEvaluvator=(data)=>{
     })
 }
 
-let result=(id)=>{
+let resultEvaluvator=(id)=>{
     return new promise((resolve,reject)=>{
     
-        const  sql= 'SELECT * FROM marks m LEFT JOIN login l  ON m.evaluteId = l.userId  LEFT JOIN student s  ON m.studentId = s.studentId  LEFT JOIN evaluvation_type e  ON  m.evaluvationType_id= e.id where group_Id=?'
-  
-        connection.query(sql,[id],(error,result)=>{
+        // const  sql= 'SELECT * FROM marks m LEFT JOIN login l  ON m.evaluteId = l.userId  LEFT JOIN student s  ON m.studentId = s.studentId  LEFT JOIN evaluvation_type e  ON  m.evaluvationType_id= e.id where group_Id=?'
+  const sql='SELECT m.evaluvationType_id,m.studentId,m.marks,m.role,m.evaluteId,m.group_Id,e.email,e.id,s.studentId,s.name,s.degree,eve.id,eve.type FROM marks m LEFT JOIN evaluvator e  ON m.evaluteId = e.id LEFT JOIN student s  ON m.studentId = s.studentId LEFT JOIN evaluvation_type eve  ON  m.evaluvationType_id= eve.id  where m.group_Id=? AND m.role=?'
+        connection.query(sql,[id,'evaluvator'],(error,result)=>{
+            if(error){
+                reject(error)
+            }else{
+// console.log(result)
+                resolve(result)  
+    }
+        })
+    })
+}
+
+let resultSupervisor=(id)=>{
+    return new promise((resolve,reject)=>{
+    
+        // const  sql= 'SELECT * FROM marks m LEFT JOIN login l  ON m.evaluteId = l.userId  LEFT JOIN student s  ON m.studentId = s.studentId  LEFT JOIN evaluvation_type e  ON  m.evaluvationType_id= e.id where group_Id=?'
+  const sql='SELECT * FROM marks m LEFT JOIN supervisor sup  ON m.evaluteId = sup.sup_id LEFT JOIN student s  ON m.studentId = s.studentId LEFT JOIN evaluvation_type e  ON  m.evaluvationType_id= e.id where m.group_Id=? AND m.role=?'
+        connection.query(sql,[id,'supervisor'],(error,result)=>{
             if(error){
                 reject(error)
             }else{
@@ -205,7 +221,8 @@ module.exports={
     checkEvaluvator,
     updateEvaluvator,
  getEvaluvation,
- result,
- groupEvaluvator
+ resultEvaluvator,
+ groupEvaluvator,
+ resultSupervisor
 
 }

@@ -14,7 +14,7 @@ router.get('/coordinator/Evaluvator/:id',auth.auth,auth.checkCoordinator,coordin
 router.post('/inserEvaluvator',auth.auth,auth.checkCoordinator,coordinator.inserEvaluvator)
 
 
-router.get('/coordinator/Result/:id',auth.auth,auth.checkCoordinator,coordinator.result)
+router.get('/coordinator/Result/:id/:groupId',auth.auth,auth.checkCoordinator,coordinator.result)
  
 
 

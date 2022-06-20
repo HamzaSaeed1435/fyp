@@ -76,10 +76,8 @@ let groupDetails=(id,sup_id)=>{
 let groupMember=(id,sup_id)=>{
     return new promise((resolve,reject)=>{
         // const  sql= 'SELECT * FROM group_member m LEFT JOIN student s ON m.studentId = s.studentId LEFT JOIN marks mark ON m.studentId=mark.studentId LEFT JOIN evaluvation_type ev ON mark.evaluvationType_id=ev.id WHERE groupId=? AND mark.evaluteId=? '
-
-        const  sql= 'SELECT * FROM group_member m LEFT JOIN student s ON m.studentId = s.studentId LEFT JOIN marks mark ON m.studentId=mark.studentId LEFT JOIN evaluvation_type ev ON mark.evaluvationType_id=ev.id WHERE m.groupId=? AND mark.evaluteId=? '
-     
-        connection.query(sql,[id,sup_id],(error,result)=>{
+        const sql='SELECT * FROM marks m LEFT JOIN supervisor sup  ON m.evaluteId = sup.sup_id LEFT JOIN student s  ON m.studentId = s.studentId LEFT JOIN evaluvation_type e  ON  m.evaluvationType_id= e.id where m.group_Id=? AND m.role=? AND m.evaluteId=?'     
+        connection.query(sql,[id,'supervisor',sup_id],(error,result)=>{
             if(error){
                 reject(error)
             }else{
@@ -142,9 +140,9 @@ let proposalDetail=(id,sup_id)=>{
 
 let insertmarks=(data,id)=>{
     return new promise((resolve,reject)=>{
-    console.log(data)
-        const  sql= 'insert into marks (`evaluvationType_id`, `studentId`, `marks`, `evaluteId`,`group_Id`) Values(?,?,?,?,?) '
-        connection.query(sql,[data.type,data.member,data.marks,id,data.groupId],(error,result)=>{
+    console.log(id)
+        const  sql= 'insert into marks (`evaluvationType_id`, `studentId`, `marks`,`role`, `evaluteId`,`group_Id`) Values(?,?,?,?,?,?)'
+        connection.query(sql,[data.type,data.member,data.marks,'supervisor',id,data.groupId],(error,result)=>{
             if(error){
                 reject(error)
             }else{
